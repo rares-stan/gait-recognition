@@ -102,3 +102,16 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+
+# models
+models/*
+!models/.gitkeep
+
+# tensorboard logs
+logs/*
+!logs/.gitkeep
+
+# raw data
+data/*
+!data/**/.gitkeep
