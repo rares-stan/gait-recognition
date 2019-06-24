@@ -107,6 +107,7 @@ venv.bak/
 # models
 models/*
 !models/.gitkeep
+!models/to_be_kept/*
 
 # tensorboard logs
 logs/*

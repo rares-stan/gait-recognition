@@ -4,9 +4,9 @@ from os import listdir
 import numpy as np
 import pickle
 
-OUTPUT_H = 180
-OUTPUT_W = 90
-OUTPUT_FRAMES = 100
+OUTPUT_H = 120
+OUTPUT_W = 60
+OUTPUT_FRAMES = 50
 
 
 def read_img(filename):
@@ -53,9 +53,10 @@ def preprocess(img):
     # img = morphology.binary_erosion(img)
     # img = morphology.binary_dilation(img)
     # img = img_as_bool(transform.resize(img, (60, 30)))
-    index = feature.shape_index(img)
-    index[np.isnan(index)] = np.NINF
-    return np.nan_to_num(index)
+    # index = feature.shape_index(img)
+    # index[np.isnan(index)] = np.NINF
+    # return np.nan_to_num(index)
+    return img
 
 
 def preprocess_folder(path):

@@ -1,0 +1,155 @@
+\documentclass[12pt]{article}
+\usepackage[romanian]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{indentfirst}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{mathtools}
+\usepackage{chngcntr}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{setspace}
+\usepackage{enumitem}
+
+\geometry{
+	a4paper,
+	lmargin=3cm,
+	rmargin=2cm,
+	tmargin=3cm,
+	bmargin=2cm
+}
+\usetikzlibrary{arrows, shapes, automata, petri, positioning}
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Teoremă}
+\counterwithin*{theorem}{subsection}
+\newtheorem{definition}{Definiție}
+\counterwithin*{definition}{subsection}
+\newtheorem{remark}{Propoziție}
+\counterwithin*{remark}{subsection}
+\newtheorem{lema}{Lema}
+\newtheorem{algo}{Algoritmul}
+\counterwithin*{algo}{subsection}
+
+
+\counterwithin*{lema}{subsection}
+\linespread{1.3}
+
+\begin{document}
+	\begin{titlepage}
+		\begin{center}
+			\vspace{1cm}
+			``ALEXANDRU IOAN CUZA" UNIVERSITY OF IAȘI
+			\
+			\\
+			\begin{large}
+				\textbf{FACULTY OF COMPUTER SCIENCE}\\
+			\end{large}		
+			\vspace{2.5cm}
+			\includegraphics{fii.png}
+			\
+			\\
+			\vspace{1cm}
+			MASTER'S DEGREE
+			\begin{large}
+				\
+				\\
+				\vspace{1.5cm}
+				\textbf{Human Gait Recognition}
+			\end{large}
+			\\
+			\vspace{1.5cm}
+			\textbf{proposed by}
+			\\
+			\vspace{1.5cm}
+			\textit{\textbf{Rareș-Alexandru Stan}}
+			\\
+			\vspace{2cm}
+			\textbf{Session:} \textit{July, 2019}
+			\\
+			\vspace{1.5cm}
+			\textbf{Scientific Coordinator}
+			\
+			\\
+			\
+			\\
+			\textbf{Lect. Dr. Ignat Anca}
+			
+		\end{center}
+	\end{titlepage}
+	\newpage
+	
+	\begin{titlepage}
+		\begin{center}
+			\textbf{``ALEXANDRU IOAN CUZA" UNIVERSITY OF IAȘI}
+			\
+			\\
+			\textbf{FACULTY OF COMPUTER SCIENCE}\\
+			\vspace{6cm}
+			\
+			\\
+			\begin{huge}
+				\textbf{Human Gait Recognition}
+			\end{huge}
+			\\
+			\begin{large}
+				\vspace{3cm}
+				\textit{\textbf{Rareș-Alexandru Stan}}
+				\\
+				\vspace{3cm}
+				\textbf{Session:} \textit{July, 2019}
+				\\
+			\end{large}
+			\vspace{3cm}
+			\textbf{Scientific Coordinator}
+			\
+			\\
+			\textit{\textbf{Lect. Dr. Ignat Anca}	}
+		\end{center}
+	\end{titlepage}
+	\newpage
+	\tableofcontents
+	\newpage
+	
+	\section*{Introduction}
+	\addcontentsline{toc}{section}{Introduction}
+	\vspace{1cm}
+	
+	Gait is the movement pattern of limbs during walking over a solid surface. It varies based on speed, terrain, maneuvering or efficiency of energy. This movement is unique for each human and can be used for recognizing persons from afar, without the need of their cooperation or physical contact, whereas fingerprint, iris or facial do need the physical access or their cooperation \cite{biometrics-comparison}.
+	
+	
+	\newpage
+	
+	\section*{Contributions}
+	\addcontentsline{toc}{section}{Contributions}
+	\vspace{1cm}
+	
+	\newpage
+	
+	\section*{State of the Art}
+	\addcontentsline{toc}{section}{State of the Art}
+	\vspace{1cm}
+	
+	\newpage
+	
+	\section*{Approach}
+	\addcontentsline{toc}{section}{Approach}
+	\vspace{1cm}
+	
+	\newpage
+	
+	\section*{Conclusions}
+	\addcontentsline{toc}{section}{Conclusions}
+	\vspace{1cm}
+	
+	\newpage
+	
+	\section*{Bibliography}
+	\addcontentsline{toc}{section}{Bibliography}
+	\bibliography{bibliografie}
+	\bibliographystyle{ieeetr}
+	
+\end{document}

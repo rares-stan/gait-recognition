@@ -10,8 +10,8 @@ def copy_from_dir(src, dst):
         copy_file(f, dst)
 
 
-org = "C:\\Facultate\\disertatie\\gait\\DatasetB-1\\silhouettes"
-fin = "C:\\Facultate\\disertatie\\test\\data\\train4"
+org = "C:\\Dizertatie\\DatasetB-1\\silhouettes"
+fin = "C:\\Dizertatie\\gait-recognition\\data\\val"
 
 origs = [(join(org, f, 'nm-06', '090'), f) for f in listdir(org) if isdir(join(org, f))]
 for img_dir, name in origs:

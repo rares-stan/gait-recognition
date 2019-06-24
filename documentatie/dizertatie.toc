@@ -1,0 +1,7 @@
+\select@language {romanian}
+\contentsline {section}{Introduction}{2}
+\contentsline {section}{Contributions}{3}
+\contentsline {section}{State of the Art}{4}
+\contentsline {section}{Approach}{5}
+\contentsline {section}{Conclusions}{6}
+\contentsline {section}{Bibliography}{7}

@@ -8,9 +8,9 @@ import numpy as np
 import pickle
 
 
-OUTPUT_H = 180
-OUTPUT_W = 90
-OUTPUT_FRAMES = 100
+OUTPUT_H = 120
+OUTPUT_W = 60
+OUTPUT_FRAMES = 50
 
 NAME = 'test'
 BATCH_SIZE = 1
@@ -87,13 +87,6 @@ model.add(Activation('relu'))
 model.add(BatchNormalization())
 model.add(MaxPooling3D(pool_size=(2, 2, 2)))
 # model.add(Dropout(0.3))
-
-model.add(Conv3D(4, (10, 10, 10), padding='same'))
-model.add(Activation('relu'))
-model.add(BatchNormalization())
-model.add(MaxPooling3D(pool_size=(2, 2, 2)))
-# model.add(Dropout(0.3))
-
 
 model.add(Flatten())
 model.add(Dense(OUTPUT_SIZE, activation='softmax'))
