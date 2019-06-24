@@ -1,7 +1,13 @@
 \select@language {romanian}
+\contentsline {section}{\numberline {1}Introduction}{2}
 \contentsline {section}{Introduction}{2}
+\contentsline {section}{\numberline {2}Contributions}{3}
 \contentsline {section}{Contributions}{3}
+\contentsline {section}{\numberline {3}State of the Art}{4}
 \contentsline {section}{State of the Art}{4}
+\contentsline {section}{\numberline {4}Approach}{5}
 \contentsline {section}{Approach}{5}
+\contentsline {section}{\numberline {5}Conclusions}{6}
 \contentsline {section}{Conclusions}{6}
+\contentsline {section}{\numberline {6}Bibliography}{7}
 \contentsline {section}{Bibliography}{7}
