@@ -136,7 +136,33 @@
 	\addcontentsline{toc}{section}{State of the Art}
 	\vspace{1cm}
 	
-	Human gait is the movement pattern of the limbs during walking. It can vary depending on the persons age, weight, how tired he is, if he is carrying extra weight and if he has loose clothing.
+	Human gait is the movement pattern of the limbs during walking. It can vary depending on the persons age, weight, how tired he is and if he is carrying extra weight. A system for recognizing persons by their walking should take all of the situations from above, to correctly identify them.
+	
+	There are three main approaches for identifying people by their gait, Machine Vision (MV), floor sensors and wearable sensors. Each of the three approaches have some disadvantages and advantages:
+		\begin{itemize}
+			\item MV:
+				\begin{itemize}
+					\item it is cheaper to implement, no need to install extra sensors, just some video cameras;
+					\item can cover a wide area;
+					\item it is affected if the people are wearing voluminous clothes;
+				\end{itemize}
+			\item Floor Sensors:
+				\begin{itemize}
+					\item are not affected by the clothes worn by the user;
+					\item are more expensive to implement than MV;
+					\item limited area for recognizing people;
+				\end{itemize}
+			\item Wearable Sensors:
+				\begin{itemize}
+					\item are not limited by a specific area;
+					\item are not affected by the clothes worn by the user;
+					\item you need to have physical access or to have their cooperation.
+				\end{itemize}
+		\end{itemize}
+	
+	In Machine Vision there are tow main approaches, model-free and model-based, where the first approach uses direct image sequences, whereas the latter needs more processing of the input sequence.
+	
+	
 	
 	\newpage
 	
