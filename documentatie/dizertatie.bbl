@@ -11,4 +11,13 @@ M.~Mohualdeen and M.~Baker, ``Gait recognition based on silhouettes sequences
   Electrical Engineering and Informatics (IJEEI)}, vol.~6, p.~110~117, March
   2018.
 
+\bibitem{gait-with-gei}
+M.~Alotaibi and A.~Mahmood, ``Improved gait recognition based on specialized
+  deep convolutional neural network,'' {\em Computer Vision and Image
+  Understanding}, 2017.
+
+\bibitem{gait-with-curvature-map}
+H.~El-Alfy, I.~Mitsugami, and Y.~Yagi, ``Gait recognition based on normal
+  distance maps,'' {\em IEEE Transactions on Cybernetics}, 2018.
+
 \end{thebibliography}

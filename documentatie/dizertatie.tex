@@ -126,12 +126,6 @@
 	
 	\newpage
 	
-	\section{Contributions}
-	\addcontentsline{toc}{section}{Contributions}
-	\vspace{1cm}
-	
-	\newpage
-	
 	\section{State of the Art}
 	\addcontentsline{toc}{section}{State of the Art}
 	\vspace{1cm}
@@ -164,6 +158,16 @@
 	
 	Molhema Mohualdeen and Magdi Baker \cite{gait-silhouette-nn} have proposed a model-based approach for the Gait Recognition problem using Region os Interest (ROI), Discrete Wavelet Transform (DWT), Edges, Gait Cycle and Neural Networks.
 	ROI was used in the preprocessing phase to reduce data and extract the exact silhouette from each frame, by cropping. Next, in the feature extraction phase, they used DWT for multi-scale analysis, using diagonal, horizontal and vertical details of the three levels low pass and high pass filters on two dimensions DWT. Beside 3L-2D-DWT they used Edge Detection for magnitude and orientation and box technique for step and cycle length, using the with of the bounding box. Estimating the Gait Cycle was done by combining the silhouettes between the tow main phases of Gait and combining them together for each person and measuring the combination area and the width of the white shape boundary represents the step length. Classification was done using a Back Propagation Neural Network (BPNN).
+	
+	Munif Alotaibi and Ausif Mahmood \cite{gait-with-gei} propose a different type of preprocessing with a Convolutional Neural Network for classification. The processioning is done using the Gait Energy Image (GEI), defined as: $GEI(x, y)=1/s\sum_{t-1}^{s}F^t(x, y)$, where $s$ is the total number of frames representing the Gait Cycle and $F^t(x, y)$ is the silhouette of the subject at the time interval $t$. For determining the Gait Cycle it is used the bounding box changes method and the silhouettes are then resized to $140 * 140$ pixels. The Neural Network has 4 pairs of Convolution and Pooling layers, each with eight $5 * 5$ filters and eight sub-sampling maps with pooling factor $2$. For the activation function of the Convolutional layers it is used the Hyperbolic Tangent function. After the last Convolution and Pooling pair a Dense Layer with 124 nodes and SoftMax activation functions is used, to classify the data. For adding a new user to be recognized by the system, the old model is taken and froze the Convolutional and Pooling layers, so they are not changed during the new training period, and just the Dense Layer is modified, by adding a new node, and retrained.
+	
+	Hazem El-Alfy, Ikuhisa Mitsugami and Yasushi Yagi \cite{gait-with-curvature-map} build a system in which the preprocessing is done using the Gauss Map of the silhouettes and classification they use Euclidean Distance on the feature vectors between the person to be recognized and the existing database. In more details, the Gauss Maps wore done on the silhouette's surface, evaluated locally, to overcome the lack of the third dimension and made all the normal vectors point outwards the silhouette. Gauss Mapping was done on a silhouette with it's boundary extracted then smoothed using a parametric cubic spline interpolation, for it's continuity at zero, first and second order with control points being every fifth pixel of the boundary. All of the silhouettes pixels are then Distance Transformed where the distance is calculated as follows $d=max(|x_1-x_2|, |y_1-y_2|)$, where $(x_1, y_1)$ and $(x_2, y_2)$ are two distinct pixels from the image and then are computed the contour lines of the distance map. After this the image is divided in a regular grid and for each cell in computed a histogram of all the normal vectors in that contour cell. All of the cell are combined in a feature vector and it is repeated for all contours in that image. Last all the feature vectors for that image are merged into the final feature descriptor, the NDM. All of the NDMs from a full gait cycle are integrated together, using their average for the aggregate cycle descriptor. Over this aggregated feature vector the Euclidean Distance is calculated.
+	
+	\newpage
+	
+	\section{Contributions}
+	\addcontentsline{toc}{section}{Contributions}
+	\vspace{1cm}
 	
 	\newpage
 	
