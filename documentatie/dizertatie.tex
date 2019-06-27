@@ -13,6 +13,7 @@
 \usepackage{subcaption}
 \usepackage{setspace}
 \usepackage{enumitem}
+\usepackage{siunitx}
 
 \geometry{
 	a4paper,
@@ -53,7 +54,7 @@
 			\
 			\\
 			\vspace{1cm}
-			MASTER'S DEGREE
+			MASTER'S THESIS
 			\begin{large}
 				\
 				\\
@@ -156,6 +157,8 @@
 	
 	In Machine Vision there are tow main approaches, model-free and model-based, where the first approach uses direct image sequences, whereas the latter needs more processing of the input sequence.
 	
+	\subsection{Model-Based Machine Vision}
+	
 	Molhema Mohualdeen and Magdi Baker \cite{gait-silhouette-nn} have proposed a model-based approach for the Gait Recognition problem using Region os Interest (ROI), Discrete Wavelet Transform (DWT), Edges, Gait Cycle and Neural Networks.
 	ROI was used in the preprocessing phase to reduce data and extract the exact silhouette from each frame, by cropping. Next, in the feature extraction phase, they used DWT for multi-scale analysis, using diagonal, horizontal and vertical details of the three levels low pass and high pass filters on two dimensions DWT. Beside 3L-2D-DWT they used Edge Detection for magnitude and orientation and box technique for step and cycle length, using the with of the bounding box. Estimating the Gait Cycle was done by combining the silhouettes between the tow main phases of Gait and combining them together for each person and measuring the combination area and the width of the white shape boundary represents the step length. Classification was done using a Back Propagation Neural Network (BPNN).
 	
@@ -169,11 +172,52 @@
 	\addcontentsline{toc}{section}{Contributions}
 	\vspace{1cm}
 	
+	There are two classes for the Gait Recognition method, using Machine Vision, Model-Base and Model-Free. In the former class there are methods that preprocess the input data or extract some other information from it, which is used for classification, whereas the latter uses the raw data or with very little preprocessing as input for classification. In this theses we have tried a Model-Based approach and propose a Model-Free one for Human Gait Recognition.
+	
+	For training and testing data we have used the CASIA-B database \cite{casia1}\cite{casia2}\cite{casia3} as it already has the silhouettes made, which gave us the possibility to focus on the recognition methods. For new we used only the \ang{90} images, the rest will be used in a future test, and split the data in testing, nm01-nm04, for validation nm-05 and for testing nm-06.
+	
+	We have tried two different approaches, one Model-Based, in which the input images were cropped, smoothed and then a surface curvature metric was extracted from the silhouette and then classified using a Convolutional Neural Network, and one Model-Free, where the input images were cropped and then feed to a Convolutional Neural Network for classification
+	
+	Through surface curvature metric we refer to a function that can map the shape, position and altitude, from an image with three dimensional objects, to a numerical value, for each pixel in the original image.
+	
+	Smoothing refers to the process of removing noise or fine-scale structures from images, resulting in a less jagged edges and sharp curves/transitions.
+	
 	\newpage
 	
 	\section{Approach}
 	\addcontentsline{toc}{section}{Approach}
 	\vspace{1cm}
+	
+	In the first part ot this chapter we will present the architecture and methods used for the Model-Based approach and after that the Model-Free system. At the start of each description there will be defined what the method uses for preprocessing and classification.
+	
+	\subsection{Model-Based Approach}
+	
+	The shape index is a measure of local curvature, derived from the eigen values of the Hessian, defined by Koenderink and van Doorn \cite{shape-index}. It can be used to find structures based on their apparent local shape. It maps to values in the range $[-1, 1]$, representing different shape types. It is defined as follows:
+	
+	\begin{equation*}
+	s=\frac{2}{\pi}*\arctan{\frac{k_2+k_1}{k_2-k_1}} \;\;\;\;  (k_1 \geq k_2)
+	\end{equation*}
+	
+	Here $(k_1, k_2)$ are polar coordinates described by $k_{1,2}^2-2H_{k_{1,2}}+K=0$, where $H$ is the mean curvature, measuring the spread of normals for the points of infinitesimal arcs, divided by the arch length and averaged over all surfaces, and $K$ is the Gaussian curvature, specifying the spread of normals.
+	
+	Neural Networks are a collection of connected nodes, name neurons, that for a node $j$, at the time interval $t$, with input  $p_j(t)$, consist of:
+	\begin{itemize}
+		\item an activation $a_j(t)$,
+		\item a threshold $\theta_j$,
+		\item an activation function $f$ that computes the new activation at time $t+1$ from $a_j(t), \theta_j$ and the input $p_j(t)$, resulting $a_j(t+1)=f(a_j(t), p_j(t), \theta_j)$,
+		\item and an output $o_j(t)=f_{out}(a_j(t))$
+	\end{itemize}
+	and with a propagation function, that computes the input $p_j(t)$, for node $j$, from $o_i(t)$ of predecessor neurons and has the form $p_j(t)=\sum_io_i(t)*w_{ij} + w_{0j}$, where $w_{0j}$ is a bias.
+	
+	Learning in Neural Networks is done by first doing a feed forward, computing the output of the network, for the input $x, x \in \mathbb{R}^n$, where $n$ is the size of the input vector, then computing the error of the entire network for the known input and propagating the error and updating the weights for each layer in the network like so
+	\begin{equation*}
+		w_{ij}(t+1)=w_{ij}(t)-\eta\frac{\partial C}{\partial w_{ij}}+ \xi(t)
+	\end{equation*}
+	
+	where $\eta$ is the learning rate, $C$ is the cost function, and $\xi(t)$ a stochastic term. The cost function depends on the learning type and the activation function, usually in supervised learning the cost function is Cross Entropy. Backpropagation is done for each training sample for the desired number of epochs.
+	
+	Convolutional Neural Networks beside the classic dense layers they have a convolution and pooling layer and they are primarily used for image and video related learning.
+	Convolutional layers have multiple filters of fixed dimensions, randomly initialized in a uniform distribution. The $a*b$ filter is applied over the input $x$, using the dot product between the filter and sub-matrix of $x$,  with a stride $s$, and the output is added with the bias term and then the activation function is applied, this happens for all the defined filters for a specific convolutional layer independently. Pooling layers reduce the size of the input by a specified factor, using a specific function, max, average or min, so that the following filters theoretically look at bigger feature of the input. Dense layers are usually used just for output labeling or additional classifying.
 	
 	\newpage
 	

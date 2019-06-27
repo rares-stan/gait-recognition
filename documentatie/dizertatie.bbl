@@ -20,4 +20,24 @@ M.~Alotaibi and A.~Mahmood, ``Improved gait recognition based on specialized
 H.~El-Alfy, I.~Mitsugami, and Y.~Yagi, ``Gait recognition based on normal
   distance maps,'' {\em IEEE Transactions on Cybernetics}, 2018.
 
+\bibitem{casia1}
+S.~Zheng, J.~Zhang, K.~Huang, R.~He, and T.~Tan, ``Robust view transformation
+  model for gait recognition,'' in {\em International Conference on Image
+  Processing(ICIP)}, (Brussels, Belgium), 2011.
+
+\bibitem{casia2}
+S.~Yu, D.~Tan, and T.~Tan, ``A framework for evaluating the effect of view
+  angle, clothing and carrying condition on gait recognition,'' in {\em Proc.
+  of the 18′th International Conference on Pattern Recognition (ICPR)}, (Hong
+  Kong, China), August 2006.
+
+\bibitem{casia3}
+R.~He, T.~Tan, and L.~Wang, ``Robust recovery of corrupted low-rank matrix by
+  implicit regularizers,'' {\em IEEE Transactions on Pattern Analysis and
+  Machine Intelligence}, April 2014.
+
+\bibitem{shape-index}
+J.~JKoenderink and A.~J. van Doorn, ``Surface shape and curvature scales,''
+  {\em Image and Vision Computing}, 1992.
+
 \end{thebibliography}

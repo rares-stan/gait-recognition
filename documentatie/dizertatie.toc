@@ -1,13 +1,15 @@
-\babel@toc {romanian}{}
-\contentsline {section}{\numberline {1}Introduction}{2}% 
-\contentsline {section}{Introduction}{2}% 
-\contentsline {section}{\numberline {2}State of the Art}{3}% 
-\contentsline {section}{State of the Art}{3}% 
-\contentsline {section}{\numberline {3}Contributions}{5}% 
-\contentsline {section}{Contributions}{5}% 
-\contentsline {section}{\numberline {4}Approach}{6}% 
-\contentsline {section}{Approach}{6}% 
-\contentsline {section}{\numberline {5}Conclusions}{7}% 
-\contentsline {section}{Conclusions}{7}% 
-\contentsline {section}{\numberline {6}Bibliography}{8}% 
-\contentsline {section}{Bibliography}{8}% 
+\select@language {romanian}
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{Introduction}{2}
+\contentsline {section}{\numberline {2}State of the Art}{3}
+\contentsline {section}{State of the Art}{3}
+\contentsline {subsection}{\numberline {2.1}Model-Based Machine Vision}{3}
+\contentsline {section}{\numberline {3}Contributions}{6}
+\contentsline {section}{Contributions}{6}
+\contentsline {section}{\numberline {4}Approach}{7}
+\contentsline {section}{Approach}{7}
+\contentsline {subsection}{\numberline {4.1}Model-Based Approach}{7}
+\contentsline {section}{\numberline {5}Conclusions}{9}
+\contentsline {section}{Conclusions}{9}
+\contentsline {section}{\numberline {6}Bibliography}{10}
+\contentsline {section}{Bibliography}{10}
