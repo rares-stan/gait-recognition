@@ -1,13 +1,9 @@
 \contentsline {section}{\numberline {1}Introduction}{2}
-\contentsline {section}{Introduction}{2}
 \contentsline {section}{\numberline {2}State of the Art}{3}
-\contentsline {section}{State of the Art}{3}
 \contentsline {subsection}{\numberline {2.1}Model-Based Machine Vision}{3}
 \contentsline {subsection}{\numberline {2.2}Model-Free Machine Vision}{5}
 \contentsline {section}{\numberline {3}Contributions}{6}
-\contentsline {section}{Contributions}{6}
 \contentsline {section}{\numberline {4}Approach}{7}
-\contentsline {section}{Approach}{7}
 \contentsline {subsection}{\numberline {4.1}Shape Index}{7}
 \contentsline {subsection}{\numberline {4.2}Neural Networks}{7}
 \contentsline {subsubsection}{\numberline {4.2.1}Convolutional Neural Networks}{8}
@@ -17,6 +13,4 @@
 \contentsline {subsubsection}{\numberline {4.4.1}3D Convolution}{11}
 \contentsline {subsubsection}{\numberline {4.4.2}LSTM}{12}
 \contentsline {section}{\numberline {5}Conclusions}{15}
-\contentsline {section}{Conclusions}{15}
 \contentsline {section}{\numberline {6}Bibliography}{16}
-\contentsline {section}{Bibliography}{16}
