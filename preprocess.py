@@ -1,12 +1,13 @@
 from skimage import io, transform, morphology, feature, img_as_bool
 from os.path import isfile, join, isdir
+from random import shuffle
 from os import listdir
 import numpy as np
 import pickle
 
 OUTPUT_H = 120
 OUTPUT_W = 60
-OUTPUT_FRAMES = 50
+OUTPUT_FRAMES = 30
 
 
 def read_img(filename):
@@ -61,6 +62,8 @@ def preprocess(img):
 
 def preprocess_folder(path):
     files = [join(path, f) for f in listdir(path) if isfile(join(path, f))]
+    if len(files) is 0:
+        return False
     pics = []
     for f in files:
         img = read_img(f)
@@ -74,13 +77,36 @@ def preprocess_folder(path):
     return pics
 
 
+def preprocess_user(path):
+    degrees = [join(path, f) for f in listdir(path) if isdir(join(path, f))]
+    multiple_user_degrees = []
+    for f in degrees:
+        user_degree = preprocess_folder(f)
+        if user_degree is not False:
+            multiple_user_degrees.append(user_degree)
+        else:
+            print('++++++++', f)
+    return multiple_user_degrees
+
+
 def preprocess_all_users(path):
     dirs = [(join(path, f), f) for f in listdir(path) if isdir(join(path, f))]
     users = []
     for f, name in dirs:
-        user = preprocess_folder(f)
-        users.append((user, name))
+        for user_degree in preprocess_user(f):
+            users.append((user_degree, name))
+    shuffle(users)
     return np.array(users)
+
+
+maps = [
+    ("data/train1", f'data/train1-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/train2", f'data/train2-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/train3", f'data/train3-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/train4", f'data/train4-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/test", f'data/test-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/validation", f'data/validation-{OUTPUT_FRAMES}-frames.pickle')
+]
 
 
 # pickle_file = open('data/train1.pickle', 'wb')
@@ -91,9 +117,15 @@ def preprocess_all_users(path):
 # aa = preprocess_all_users("data/train3")
 # pickle_file = open('data/train4.pickle', 'wb')
 # aa = preprocess_all_users("data/train4")
-# pickle_file = open('data/val.pickle', 'wb')
-# aa = preprocess_all_users("data/val")
-pickle_file = open('data/test.pickle', 'wb')
-aa = preprocess_all_users("data/test")
-pickle.dump(aa, pickle_file)
-print(aa.shape)
+# pickle_file = open('data/validation.pickle', 'wb')
+# aa = preprocess_all_users("data/validation")
+# pickle_file = open('data/test.pickle', 'wb')
+# aa = preprocess_all_users("data/test")
+# pickle.dump(aa, pickle_file)
+# print(aa.shape)
+
+
+for (src, dst) in maps:
+    with open(dst, 'wb') as pickle_file:
+        aa = preprocess_all_users(src)
+        pickle.dump(aa, pickle_file)

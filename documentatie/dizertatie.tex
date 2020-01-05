@@ -1,11 +1,12 @@
 \documentclass[12pt]{article}
-\usepackage[romanian]{babel}
+\usepackage{tabularx}
 \usepackage[utf8x]{inputenc}
 \usepackage{indentfirst}
 \usepackage{amsthm}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{tikz}
+\usepackage{array}
 \usepackage{geometry}
 \usepackage{mathtools}
 \usepackage{chngcntr}
@@ -14,6 +15,7 @@
 \usepackage{setspace}
 \usepackage{enumitem}
 \usepackage{siunitx}
+\usepackage{color, colortbl}
 
 \geometry{
 	a4paper,
@@ -25,15 +27,17 @@
 \usetikzlibrary{arrows, shapes, automata, petri, positioning}
 
 \theoremstyle{definition}
-\newtheorem{theorem}{Teoremă}
+\newtheorem{theorem}{Theorem}
 \counterwithin*{theorem}{subsection}
-\newtheorem{definition}{Definiție}
+\newtheorem{definition}{Definition}
 \counterwithin*{definition}{subsection}
-\newtheorem{remark}{Propoziție}
+\newtheorem{remark}{Proposition}
 \counterwithin*{remark}{subsection}
 \newtheorem{lema}{Lema}
-\newtheorem{algo}{Algoritmul}
+\newtheorem{algo}{Algorithm}
 \counterwithin*{algo}{subsection}
+
+\definecolor{Gray}{gray}{0.9}
 
 
 \counterwithin*{lema}{subsection}
@@ -48,7 +52,7 @@
 			\\
 			\begin{large}
 				\textbf{FACULTY OF COMPUTER SCIENCE}\\
-			\end{large}		
+			\end{large}
 			\vspace{2.5cm}
 			\includegraphics{fii.png}
 			\
@@ -78,11 +82,11 @@
 			\
 			\\
 			\textbf{Lect. Dr. Ignat Anca}
-			
+
 		\end{center}
 	\end{titlepage}
 	\newpage
-	
+
 	\begin{titlepage}
 		\begin{center}
 			\textbf{``ALEXANDRU IOAN CUZA" UNIVERSITY OF IAȘI}
@@ -114,25 +118,25 @@
 	\newpage
 	\tableofcontents
 	\newpage
-	
+
 	\section{Introduction}
 	\addcontentsline{toc}{section}{Introduction}
 	\vspace{1cm}
-	
+
 	Gait is the movement pattern of the limbs during walking over a solid surface. It varies based on speed, terrain, maneuvering or efficiency of energy. This movement is unique for each human and can be used for recognizing persons from afar, without the need of their cooperation or physical contact, whereas fingerprint, iris or facial do need the physical access or their cooperation \cite{biometrics-comparison}.
-	
+
 	There are three main categories in which recognition could be classified, Machine Vision (MV), floor sensors and wearable sensors. MV is preferred because it is effective in continuous authentication and is the most non-intrusive approach.
-	
+
 	We will create a system for human gait recognition using machine Vision and Convolutional Neural Networks, that accept a series of frames with the person walking.
-	
+
 	\newpage
-	
+
 	\section{State of the Art}
 	\addcontentsline{toc}{section}{State of the Art}
 	\vspace{1cm}
-	
+
 	Human gait is the movement pattern of the limbs during walking. It can vary depending on the persons age, weight, how tired he is and if he is carrying extra weight. A system for recognizing persons by their walking should take all of the situations from above, to correctly identify them.
-	
+
 	There are three main approaches for identifying people by their gait, Machine Vision (MV), floor sensors and wearable sensors. Each of the three approaches have some disadvantages and advantages:
 		\begin{itemize}
 			\item MV:
@@ -154,53 +158,56 @@
 					\item you need to have physical access or to have their cooperation.
 				\end{itemize}
 		\end{itemize}
-	
+
 	In Machine Vision there are tow main approaches, model-free and model-based, where the first approach uses direct image sequences, whereas the latter needs more processing of the input sequence.
-	
+
 	\subsection{Model-Based Machine Vision}
-	
+
 	Molhema Mohualdeen and Magdi Baker \cite{gait-silhouette-nn} have proposed a model-based approach for the Gait Recognition problem using Region os Interest (ROI), Discrete Wavelet Transform (DWT), Edges, Gait Cycle and Neural Networks.
 	ROI was used in the preprocessing phase to reduce data and extract the exact silhouette from each frame, by cropping. Next, in the feature extraction phase, they used DWT for multi-scale analysis, using diagonal, horizontal and vertical details of the three levels low pass and high pass filters on two dimensions DWT. Beside 3L-2D-DWT they used Edge Detection for magnitude and orientation and box technique for step and cycle length, using the with of the bounding box. Estimating the Gait Cycle was done by combining the silhouettes between the tow main phases of Gait and combining them together for each person and measuring the combination area and the width of the white shape boundary represents the step length. Classification was done using a Back Propagation Neural Network (BPNN).
-	
+
 	Munif Alotaibi and Ausif Mahmood \cite{gait-with-gei} propose a different type of preprocessing with a Convolutional Neural Network for classification. The processioning is done using the Gait Energy Image (GEI), defined as: $GEI(x, y)=1/s\sum_{t-1}^{s}F^t(x, y)$, where $s$ is the total number of frames representing the Gait Cycle and $F^t(x, y)$ is the silhouette of the subject at the time interval $t$. For determining the Gait Cycle it is used the bounding box changes method and the silhouettes are then resized to $140 * 140$ pixels. The Neural Network has 4 pairs of Convolution and Pooling layers, each with eight $5 * 5$ filters and eight sub-sampling maps with pooling factor $2$. For the activation function of the Convolutional layers it is used the Hyperbolic Tangent function. After the last Convolution and Pooling pair a Dense Layer with 124 nodes and SoftMax activation functions is used, to classify the data. For adding a new user to be recognized by the system, the old model is taken and froze the Convolutional and Pooling layers, so they are not changed during the new training period, and just the Dense Layer is modified, by adding a new node, and retrained.
-	
+
 	Hazem El-Alfy, Ikuhisa Mitsugami and Yasushi Yagi \cite{gait-with-curvature-map} build a system in which the preprocessing is done using the Gauss Map of the silhouettes and classification they use Euclidean Distance on the feature vectors between the person to be recognized and the existing database. In more details, the Gauss Maps wore done on the silhouette's surface, evaluated locally, to overcome the lack of the third dimension and made all the normal vectors point outwards the silhouette. Gauss Mapping was done on a silhouette with it's boundary extracted then smoothed using a parametric cubic spline interpolation, for it's continuity at zero, first and second order with control points being every fifth pixel of the boundary. All of the silhouettes pixels are then Distance Transformed where the distance is calculated as follows $d=max(|x_1-x_2|, |y_1-y_2|)$, where $(x_1, y_1)$ and $(x_2, y_2)$ are two distinct pixels from the image and then are computed the contour lines of the distance map. After this the image is divided in a regular grid and for each cell in computed a histogram of all the normal vectors in that contour cell. All of the cell are combined in a feature vector and it is repeated for all contours in that image. Last all the feature vectors for that image are merged into the final feature descriptor, the NDM. All of the NDMs from a full gait cycle are integrated together, using their average for the aggregate cycle descriptor. Over this aggregated feature vector the Euclidean Distance is calculated.
-	
+
+	\subsection{Model-Free Machine Vision}
+
 	\newpage
-	
+
 	\section{Contributions}
 	\addcontentsline{toc}{section}{Contributions}
 	\vspace{1cm}
-	
-	There are two classes for the Gait Recognition method, using Machine Vision, Model-Base and Model-Free. In the former class there are methods that preprocess the input data or extract some other information from it, which is used for classification, whereas the latter uses the raw data or with very little preprocessing as input for classification. In this theses we have tried a Model-Based approach and propose a Model-Free one for Human Gait Recognition.
-	
-	For training and testing data we have used the CASIA-B database \cite{casia1}\cite{casia2}\cite{casia3} as it already has the silhouettes made, which gave us the possibility to focus on the recognition methods. For new we used only the \ang{90} images, the rest will be used in a future test, and split the data in testing, nm01-nm04, for validation nm-05 and for testing nm-06.
-	
-	We have tried two different approaches, one Model-Based, in which the input images were cropped, smoothed and then a surface curvature metric was extracted from the silhouette and then classified using a Convolutional Neural Network, and one Model-Free, where the input images were cropped and then feed to a Convolutional Neural Network for classification
-	
+
+	The two classes of methods used for Gait Recognition using Machine Vision are: Model-Base and Model-Free. In the former class there are methods that preprocess the input data or extract some other information from it, which is used for classification, whereas the latter uses the base data, only with preprocessing meant to clean and sanitize the input, for classification. In this theses we have tried both Model-Based and Model-Free approaches for Human Gait Recognition and obtained the best results with one of the Model-Free approaches.
+
+	For training and testing the CASIA-B database \cite{casia1}\cite{casia2}\cite{casia3} was used, as it already has the silhouettes extracted from the videos, which gave us the possibility to focus on the recognition methods. We have used the first part of the database, which included silhouettes for 62 people, of the 124 total. The database has been split in three categories: training, nm01-nm04, validation nm-05 and testing nm-06.
+
+	We have tried both Model-Based and Model-Free approaches. The first model we tries had the input images cropped, smoothed and then a surface curvature metric extracted from the silhouette and then classified using a Convolutional Neural Network. After that the rest of the models had the input images centered around the silhouette and cropped, then feed to either classic Convolutional Neural Networks (CNN) or combinations of CNN and Recurrent Neural Network (RNN) for classification. Lastly a comparison between all the models described.
+
 	Through surface curvature metric we refer to a function that can map the shape, position and altitude, from an image with three dimensional objects, to a numerical value, for each pixel in the original image.
-	
+
 	Smoothing refers to the process of removing noise or fine-scale structures from images, resulting in a less jagged edges and sharp curves/transitions.
-	
+
 	\newpage
-	
+
 	\section{Approach}
 	\addcontentsline{toc}{section}{Approach}
 	\vspace{1cm}
-	
-	In the first part ot this chapter we will present the architecture and methods used for the Model-Based approach and after that the Model-Free system. At the start of each description there will be defined what the method uses for preprocessing and classification.
-	
-	\subsection{Model-Based Approach}
-	
-	The shape index is a measure of local curvature, derived from the eigen values of the Hessian, defined by Koenderink and van Doorn \cite{shape-index}. It can be used to find structures based on their apparent local shape. It maps to values in the range $[-1, 1]$, representing different shape types. It is defined as follows:
-	
+
+	In the first part of this chapter we will explain what the shape index represents and how Convolutional Neural Networks and Recurrent Neural Network classify data. In the second part of the chapter the architectures and preprocessing used for the Model-Based and Model-Free approaches will be presented.
+
+	\subsection{Shape Index}
+	The shape index measures the local curvature, derived from the eigen values of the Hessian, defined by Koenderink and van Doorn \cite{shape-index}. It can be used to find structures based on their apparent local shape. It maps to values in the range $[-1, 1]$, representing different shape types. It is defined as follows:
+
 	\begin{equation*}
 	s=\frac{2}{\pi}*\arctan{\frac{k_2+k_1}{k_2-k_1}} \;\;\;\;  (k_1 \geq k_2)
 	\end{equation*}
-	
+
 	Here $(k_1, k_2)$ are polar coordinates described by $k_{1,2}^2-2H_{k_{1,2}}+K=0$, where $H$ is the mean curvature, measuring the spread of normals for the points of infinitesimal arcs, divided by the arch length and averaged over all surfaces, and $K$ is the Gaussian curvature, specifying the spread of normals.
-	
-	Neural Networks are a collection of connected nodes, name neurons, that for a node $j$, at the time interval $t$, with input  $p_j(t)$, consist of:
+
+	\subsection{Neural Networks}
+
+	Neural Networks (NN) are a collection of connected nodes, name neurons, that for a node $j$, at the time interval $t$, with input  $p_j(t)$, consist of:
 	\begin{itemize}
 		\item an activation $a_j(t)$,
 		\item a threshold $\theta_j$,
@@ -208,28 +215,159 @@
 		\item and an output $o_j(t)=f_{out}(a_j(t))$
 	\end{itemize}
 	and with a propagation function, that computes the input $p_j(t)$, for node $j$, from $o_i(t)$ of predecessor neurons and has the form $p_j(t)=\sum_io_i(t)*w_{ij} + w_{0j}$, where $w_{0j}$ is a bias.
-	
-	Learning in Neural Networks is done by first doing a feed forward, computing the output of the network, for the input $x, x \in \mathbb{R}^n$, where $n$ is the size of the input vector, then computing the error of the entire network for the known input and propagating the error and updating the weights for each layer in the network like so
+
+	Learning in Neural Networks is done by firstly feed forward the input, to compute the output of the network, for the input $x, x \in \mathbb{R}^n$, where $n$ is the size of the input vector. Secondly calculate the error of the entire network for the known input and lastly propagate the error and update the weights of each layer. The weight updating is described throw the following:
 	\begin{equation*}
 		w_{ij}(t+1)=w_{ij}(t)-\eta\frac{\partial C}{\partial w_{ij}}+ \xi(t)
 	\end{equation*}
-	
-	where $\eta$ is the learning rate, $C$ is the cost function, and $\xi(t)$ a stochastic term. The cost function depends on the learning type and the activation function, usually in supervised learning the cost function is Cross Entropy. Backpropagation is done for each training sample for the desired number of epochs.
-	
-	Convolutional Neural Networks beside the classic dense layers they have a convolution and pooling layer and they are primarily used for image and video related learning.
-	Convolutional layers have multiple filters of fixed dimensions, randomly initialized in a uniform distribution. The $a*b$ filter is applied over the input $x$, using the dot product between the filter and sub-matrix of $x$,  with a stride $s$, and the output is added with the bias term and then the activation function is applied, this happens for all the defined filters for a specific convolutional layer independently. Pooling layers reduce the size of the input by a specified factor, using a specific function, max, average or min, so that the following filters theoretically look at bigger feature of the input. Dense layers are usually used just for output labeling or additional classifying.
-	
+
+	where $\eta$ is the learning rate, $C$ is the cost function, and $\xi(t)$ a stochastic term. The cost function depends on the learning type and the activation function, usually in supervised learning the cost function is Cross Entropy. Back-Propagation is done for each training sample for the desired number of epochs.
+
+
+	\subsubsection{Convolutional Neural Networks}
+
+	Convolutional Neural Networks (CNN) beside the classic dense layers they have convolution and pooling layers and are primarily used for image and video related learning.
+	Convolutional layers have multiple filters of fixed dimensions, randomly initialized with a uniform distribution. The $a*b$ filter is applied over the input $x$, using the dot product between the filter and sub-matrix of $x$,  with a stride $s$, and the output is added with the bias term and then the activation function is applied, this happens for all the defined filters of a convolution layer independently. Pooling layers reduce the size of the input by a specified factor, using functions like: max, average, min, etc. Pooling layers are used for enabling the following filters to look at bigger feature of the input.
+
+
+	\subsubsection{Recurrent Neural Networks}
+
+	Recurrent Neural Networks (RNN) are mostly the same as standard Neural Networks, with the added bonus of each neuron having its owen memory. The activation function is time-varied. Thanks to having internal memory for each node, RNNs can process time sequences of inputs, which makes them great for video processing, speech recognition, and generating sequences.
+
+	One such king of RNN is Long Short-Term Memory (LSTM) which avoids the vanishing and exploding gradient. Besides the standard RNN model, they have recurrent gates, called forget gates.
+
+
+	\subsection{Model-Based Approach}
+
+	For the Mode-Based approach we used a Convolutional Neural Network which has as input a set of frames that have applied the shape index on each of them.
+
+	Model-Based Machine Vision approaches have a preprocessing phase, in which features are extracted from the input and passed to a Machine Learning algorithm for classification.
+
+	Because gait happens over time, we needed a way to capture the passing of time. In order to do that we used 3D Convolution, with the third dimension being time, using multiple consecutive frames.
+
+	Before any preprocessing we sanitized the input images af follows:
+	\begin{enumerate}
+		\item select the first 80 frames from the database, for each angle of all the 62 people, if there are ath least that many frames in that set, otherwise take all the frames and add empty frames to the end of the series, until 80 images are reached,
+		\item center the silhouette in each frame,
+		\item crop all images so that only the silhouette is in the frame, with a small padding,
+		\item resize the each input to $120 \times 60$ pixels.
+	\end{enumerate}
+
+	After the input is sanitized we applied the shape index algorithm for each frame, transforming it from a matrix with values $\{0, 1\}$ into a matrix with values in the range $[-1, 1]$. Then all the resulting matrixes for a persons angle are put together, in chronological order, to obtain a tensor (3D matrix), with shape $(80, 120, 60)$, 80 frames, 120 pixels heigh and 60 pixels wide frames. Each tensor is a training sample for the CNN.
+
+	Last step is the Convolutional Neural Network, which takes as input a tensor of shape $(80, 120, 60)$ and outputs a list with confidences, for each of the 62 subjects and we will say that the CNN thinks that the input is a recording of the person with the highest confidences.
+	The Model used here has four 3D convolutional layers, each followed by a 3D pooling layer and finally a densely connected layer, of size 62, for output labeling.
+
+	When doing convolution, values nearby are combined and evolved to express new features. When moving from a convolution layer to another, the features from the previous layer are used as input for the next one and previous features are combined to express more complex features in the current layer. The pooling layers are used to select between the features from the previous layer so after it only the important features are passed down.
+
+	For each convolution layer, there is specified a number of filters, which will convert the input in an output with that many channels, each one having the same size as the input. Pooling happens for each chanel independently.
+
+	In Table~\ref{table:preprocessing-CNN} all the layers are described with each ones size, number of channels and activation functions.
+
+	\begin{table}[h]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+
+		\caption{Description of the CNN Model used with the shape index preprocessing}
+		\label{table:preprocessing-CNN}
+
+		\begin{tabularx}{\textwidth}{XXXX}
+			\textbf{Layer name} & \textbf{Size} & \textbf{No. Filters} & \textbf{Activation} \\ \hline
+			Convolution & 10, 10, 10 & 32                   & elu                  \\ \hline
+			Max Pooling & 2, 2, 2    & \textbf{\textendash} & \textbf{\textendash} \\ \hline
+			Convolution & 10, 10, 10 & 16                   & elu                  \\ \hline
+			Max Pooling & 2, 2, 2    & \textbf{\textendash} & \textbf{\textendash} \\ \hline
+			Convolution & 5, 10, 10  & 8                    & elu                  \\ \hline
+			Max Pooling & 2, 2, 2    & \textbf{\textendash} & \textbf{\textendash} \\ \hline
+			Convolution & 3, 10, 5   & 4                    & elu                  \\ \hline
+			Max Pooling & 2, 2, 2    & \textbf{\textendash} & \textbf{\textendash} \\ \hline
+			Dense       & 62         & \textbf{\textendash} & softmax              \\
+		\end{tabularx}
+	\end{table}
+
+	After training, this model proved unsuccessful, having the accuracy on both the validation and text set of inputs $\approx 1.62\%$, which is equivalent to assigning a random person to each input.
+
+	\subsection{Model-Free Approach}
+
+	As stated before, Model-Free approaches have little to no preprocessing, mostly to sanitize the input or reduce its size, without losing many details of features. For all the models created in this approach have little preprocessing, to normalize the size of the input and get rid of the huge empty spaces in the images as follows:
+	\begin{enumerate}
+		\item select the first 80 frames from the database, for each angle of all the 62 people, if there are ath least that many frames in that set, otherwise take all the frames and add empty frames to the end of the series, until 80 images are reached,
+		\item center the silhouette in each frame,
+		\item crop all images so that only the silhouette is in the frame, with a small padding,
+		\item resize the each input to $120 \times 60$ pixels.
+	\end{enumerate}
+
+	After the cleaning and normalizing of the input data, it is feed to the Neural Network (NN). We created multiple models for the NN, to test how the size and type of layers affect the performance of the classification.
+
+	Firstly we can se two main path in the model definition, based on how time is defined, using:
+	\begin{itemize}
+		\item 3D Convolution,
+		\item Recurrent Neural Networks, more exactly Long Short-Term Memory (LSTM).
+	\end{itemize}
+
+	When using 3D Convolution the third dimension represents time and so when applying filters and pooling, features from different frames, different time intervals, are combined in a unique way for each person, and the dense layers, that come after the convolution, will classify each person, based on those features.
+
+	Recurrent Neural Networks have memory, which remembers features from the past and are taken into consideration alongside with the input at the current time step.
+
+	\subsubsection{3D Convolution}
+
+	Seeing that the Model-Based approach gave so poor results, we tried to identify the problem and reached to the conclusion that the preprocessing with shape index somewhat transformed the input in something that the network did not find features with which to uniquely identified the people. So we dropped the shape index and used only the input normalization and the neural network, which game promising results on the validation and testing input sets of $\approx 59\%$. We iterated through a couple more models and reach a satisfactory result of 91.7\%, on the validation and testing sets, after adding an additional dense layer of 200 nodes, right after the last max pooling layer, to the original network.
+
+	This improvement of $\approx 32.7\%$ is based on the power to give different features a more important role and further filter the relevant features received from the convolutional and pooling layers, of the new dense layer.
+
+	In Table~\ref{table:dense-CNN} all the layers are described with each ones size, number of channels and activation functions.
+
+	Preventing overfitting is a very real problem when using the CASIA-B dataset \cite{casia1}\cite{casia2}\cite{casia3} due to the very few training data available, only four examples for each filming angle for all the people. A couple of examples of measures to reduce or prevent overfitting are:
+	\begin{itemize}
+		\item add more training data,
+		\item use dropout, so that all the nodes in the network are activated,
+		\item early stopping,
+		\item use regularization, to control how much the weights update.
+	\end{itemize}
+
+	Out of the ones listed above we have used early stopping and adding dropout to all the layers, except the input layer. If the network did not obtain a better accuracy on the validation set than the best recorded yet, in 20 epochs, we stopped the training and run the best model on the testing set. Dropout picks at random a number of nodes, in the current layer, which will be used, so that all the nodes have equal chances to have their output evaluated and not overridden by other nodes on the same layer. In our models we chose to use a dropout on half of our nodes on each layer.
+
+	When learning, neural networks need a function that calculates the value with which the weights of the nodes are updated, the most popular function is stochastic gradient descent, that has a fixed learning rate, used during the entire training. In later years other functions appeared that improved the stochastic gradient descent, to reduce the learning time, called AdaGrad, RMSProp and Adam, that combines the advantages of both AdaGrad and RMSProp.
+	We chose to also add the Adam optimization for the learning process.
+
+	\begin{table}[h]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+
+		\caption{Description of the CNN Model with additional dense layer highlighted}
+		\label{table:dense-CNN}
+
+		\begin{tabularx}{\textwidth}{XXXX}
+			\textbf{Layer name} & \textbf{Size} & \textbf{No. Filters} & \textbf{Activation} \\ \hline
+			Convolution    & 10, 10, 10   & 32                   & elu                  \\ \hline
+			Max Pooling    & 2, 2, 2      & \textbf{\textendash} & \textbf{\textendash} \\ \hline
+			Convolution    & 10, 10, 10   & 16                   & elu                  \\ \hline
+			Max Pooling    & 2, 2, 2      & \textbf{\textendash} & \textbf{\textendash} \\ \hline
+			Convolution    & 5, 10, 10    & 8                    & elu                  \\ \hline
+			Max Pooling    & 2, 2, 2      & \textbf{\textendash} & \textbf{\textendash} \\ \hline
+			Convolution    & 3, 10, 5     & 4                    & elu                  \\ \hline
+			Max Pooling    & 2, 2, 2      & \textbf{\textendash} & \textbf{\textendash} \\ \hline
+			\rowcolor{Gray}
+			\textbf{Dense} & \textbf{200} & \textbf{\textendash} & \textbf{elu}         \\ \hline
+			Dense          & 62           & \textbf{\textendash} & softmax              \\
+		\end{tabularx}
+	\end{table}
+
+	\subsubsection{LSTM}
+
+
+
 	\newpage
-	
+
 	\section{Conclusions}
 	\addcontentsline{toc}{section}{Conclusions}
 	\vspace{1cm}
-	
+
 	\newpage
-	
+
 	\section{Bibliography}
 	\addcontentsline{toc}{section}{Bibliography}
 	\bibliography{bibliografie}
 	\bibliographystyle{ieeetr}
-	
+
 \end{document}

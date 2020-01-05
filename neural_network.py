@@ -1,6 +1,6 @@
 from keras.layers import Conv3D, MaxPooling3D, Dense, Activation, Dropout, Flatten
 from keras.layers.normalization import BatchNormalization
-from keras.models import Sequential
+from keras.models import Sequential, load_model
 import datetime
 from keras.callbacks import TensorBoard, ModelCheckpoint, EarlyStopping
 import os
@@ -10,7 +10,7 @@ import pickle
 
 OUTPUT_H = 120
 OUTPUT_W = 60
-OUTPUT_FRAMES = 50
+OUTPUT_FRAMES = 30
 
 NAME = 'test'
 BATCH_SIZE = 1
@@ -30,19 +30,19 @@ def one_hot_y(y):
     return np.array(r)
 
 
-f_train1 = open('data/train1.pickle', 'rb')
+f_train1 = open('data/train1-30-frames.pickle', 'rb')
 train_data1 = pickle.load(f_train1)
-f_train2 = open('data/train2.pickle', 'rb')
+f_train2 = open('data/train2-30-frames.pickle', 'rb')
 train_data2 = pickle.load(f_train2)
-f_train3 = open('data/train3.pickle', 'rb')
+f_train3 = open('data/train3-30-frames.pickle', 'rb')
 train_data3 = pickle.load(f_train3)
-f_train4 = open('data/train4.pickle', 'rb')
+f_train4 = open('data/train4-30-frames.pickle', 'rb')
 train_data4 = pickle.load(f_train4)
 
-f_val = open('data/val.pickle', 'rb')
+f_val = open('data/validation-30-frames.pickle', 'rb')
 val_data = pickle.load(f_val)
 
-f_test = open('data/test.pickle', 'rb')
+f_test = open('data/test-30-frames.pickle', 'rb')
 test_data = pickle.load(f_test)
 
 train_data = np.concatenate([train_data1, train_data2, train_data3, train_data4])
@@ -51,9 +51,9 @@ x_train, y_train = zip(*train_data)
 x_val, y_val = zip(*val_data)
 x_test, y_test = zip(*test_data)
 
-x_train = np.reshape(np.array(x_train), (248, OUTPUT_FRAMES, OUTPUT_H, OUTPUT_W, 1))
-x_val = np.reshape(np.array(x_val), (62, OUTPUT_FRAMES, OUTPUT_H, OUTPUT_W, 1))
-x_test = np.reshape(np.array(x_test), (62, OUTPUT_FRAMES, OUTPUT_H, OUTPUT_W, 1))
+x_train = np.reshape(np.array(x_train), (len(x_train), OUTPUT_FRAMES, OUTPUT_H, OUTPUT_W, 1))
+x_val = np.reshape(np.array(x_val), (len(x_val), OUTPUT_FRAMES, OUTPUT_H, OUTPUT_W, 1))
+x_test = np.reshape(np.array(x_test), (len(x_test), OUTPUT_FRAMES, OUTPUT_H, OUTPUT_W, 1))
 y_train = np.array(y_train)
 y_val = np.array(y_val)
 y_test = np.array(y_test)
@@ -63,36 +63,50 @@ y_test = one_hot_y(y_test)
 y_val = one_hot_y(y_val)
 
 
-model = Sequential()
-model.add(Conv3D(32, (10, 10, 10), padding='same', input_shape=(OUTPUT_FRAMES, OUTPUT_H, OUTPUT_W, 1)))
-model.add(Activation('relu'))
-model.add(BatchNormalization())
-model.add(MaxPooling3D(pool_size=(2, 2, 2)))
-# model.add(Dropout(0.3))
+def create_new_model():
+    new_model = Sequential()
+    new_model.add(Conv3D(32, (10, 10, 10), padding='same', input_shape=(OUTPUT_FRAMES, OUTPUT_H, OUTPUT_W, 1)))
+    new_model.add(Activation('elu'))
+    new_model.add(BatchNormalization())
+    new_model.add(MaxPooling3D(pool_size=(2, 2, 2), padding="same"))
+    new_model.add(Dropout(0.5))
 
-model.add(Conv3D(16, (10, 10, 10), padding='same'))
-model.add(Activation('relu'))
-model.add(BatchNormalization())
-model.add(MaxPooling3D(pool_size=(2, 2, 2)))
-# model.add(Dropout(0.3))
+    new_model.add(Conv3D(16, (10, 10, 10), padding='same'))
+    new_model.add(Activation('elu'))
+    new_model.add(BatchNormalization())
+    new_model.add(MaxPooling3D(pool_size=(2, 2, 2), padding="same"))
+    new_model.add(Dropout(0.5))
 
-model.add(Conv3D(8, (10, 10, 10), padding='same'))
-model.add(Activation('relu'))
-model.add(BatchNormalization())
-model.add(MaxPooling3D(pool_size=(2, 2, 2)))
-# model.add(Dropout(0.3))
+    new_model.add(Conv3D(8, (5, 10, 10), padding='same'))
+    new_model.add(Activation('elu'))
+    new_model.add(BatchNormalization())
+    new_model.add(MaxPooling3D(pool_size=(2, 2, 2), padding="same"))
+    new_model.add(Dropout(0.5))
 
-model.add(Conv3D(4, (10, 10, 10), padding='same'))
-model.add(Activation('relu'))
-model.add(BatchNormalization())
-model.add(MaxPooling3D(pool_size=(2, 2, 2)))
-# model.add(Dropout(0.3))
+    new_model.add(Conv3D(4, (3, 10, 5), padding='same'))
+    new_model.add(Activation('elu'))
+    new_model.add(BatchNormalization())
+    new_model.add(MaxPooling3D(pool_size=(2, 2, 2), padding="same"))
+    new_model.add(Dropout(0.5))
 
-model.add(Flatten())
-model.add(Dense(OUTPUT_SIZE, activation='softmax'))
+    new_model.add(Flatten())
+    new_model.add(Dropout(0.5))
+    new_model.add(Dense(200, activation='elu'))
+    new_model.add(Dense(OUTPUT_SIZE, activation='softmax'))
 
-model.summary()
-model.compile(loss='categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
+    new_model.summary()
+    new_model.compile(loss='categorical_crossentropy', metrics=['accuracy'], optimizer='adam')
+    return new_model
+
+
+def use_existing_model(path):
+    existing_model = load_model(path)
+    return existing_model
+
+
+model = create_new_model()
+# model = use_existing_model('./models_to_be_kept/continue_training/weights-improvement-12-0.631068.h5')
+
 nume_folder = '\\' + NAME + datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")
 
 os.mkdir(os.getcwd()+'\\models'+nume_folder)
