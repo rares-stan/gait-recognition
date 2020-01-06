@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{biometrics-comparison}
 H.~Srivastava, ``A comparison based study on biometrics for human
@@ -20,6 +20,15 @@ M.~Alotaibi and A.~Mahmood, ``Improved gait recognition based on specialized
 H.~El-Alfy, I.~Mitsugami, and Y.~Yagi, ``Gait recognition based on normal
   distance maps,'' {\em IEEE Transactions on Cybernetics}, vol.~48,
   pp.~1526--1539, May 2018.
+
+\bibitem{Wolf2016MultiviewGR}
+T.~Wolf, M.~Babaee, and G.~Rigoll, ``Multi-view gait recognition using 3d
+  convolutional neural networks,'' {\em 2016 IEEE International Conference on
+  Image Processing (ICIP)}, pp.~4165--4169, 2016.
+
+\bibitem{VGR-Net}
+T.~Daksh, A.~Divyansh, A.~Punjal, and N.~Aditya, ``Vgr-net: A view invariant
+  gait recognition network,'' October 2017.
 
 \bibitem{casia1}
 S.~Zheng, J.~Zhang, K.~Huang, R.~He, and T.~Tan, ``Robust view transformation
