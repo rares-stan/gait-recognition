@@ -1,13 +1,15 @@
 # Fdb version 3
-["bibtex dizertatie"] 1578344813 "dizertatie.aux" "dizertatie.bbl" "dizertatie" 1578344815
+["bibtex dizertatie"] 1578520316 "dizertatie.aux" "dizertatie.bbl" "dizertatie" 1578520319
   "C:/Program Files/MiKTeX 2.9/bibtex/bst/base/ieeetr.bst" 826288124 16932 60a0804ebef57891abf0021fa74d0cd1 ""
   "bibliografie.bib" 1578343698 3036 9e035a3dd71a39d767c23c5e92a94720 ""
-  "dizertatie.aux" 1578344814 2976 85b39c58f914d186e8147dfcf88426e0 ""
+  "dizertatie.aux" 1578520318 4041 3a78feb9e1e3e5b2cd2e1ec04b8e09d5 ""
   "dizertatie.bcf" 0 -1 0 ""
   (generated)
-  "dizertatie.bbl"
   "dizertatie.blg"
-["pdflatex"] 1578344813 "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" "c:/Dizertatie/gait-recognition/documentatie/dizertatie.pdf" "dizertatie" 1578344815
+  "dizertatie.bbl"
+["pdflatex"] 1578520316 "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" "c:/Dizertatie/gait-recognition/documentatie/dizertatie.pdf" "dizertatie" 1578520319
+  "3D-CNN-200-Dense.png" 1578514326 50429 bcadb83d32640612e4582c1704132d44 ""
+  "3D-CNN.png" 1578514400 45411 16436dbc1ea1abe8a6c20096120bf42d ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233951848 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -200,17 +202,19 @@
   "C:/Program Files/MiKTeX 2.9/tex/latex/xcolor/xcolor.sty" 1463131981 57049 34128738f682d033422ca125f82e5d62 ""
   "C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map" 1494750657 1884968 edfe4f6723907840dadd3e89f425c643 ""
   "C:/Users/Alex/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1498312822 3822394 661a37fae5242799f51243ac629df386 ""
-  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.aux" 1578344814 2976 85b39c58f914d186e8147dfcf88426e0 ""
-  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" 1578344808 34770 678785bc2d40ae8773e95e507036a2c2 ""
-  "dizertatie.aux" 1578344814 2976 85b39c58f914d186e8147dfcf88426e0 ""
-  "dizertatie.bbl" 1578344813 2264 d8e4c35455ce1326f873224746eee0ce "bibtex dizertatie"
-  "dizertatie.tex" 1578344808 34770 678785bc2d40ae8773e95e507036a2c2 ""
-  "dizertatie.toc" 1578344814 1055 42b422d2afeeab123aff2de44fec480b ""
+  "big-2D-CNN-LSTM-Dense.png" 1578520248 33890 b488713bff08089e180407846296e31e ""
+  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.aux" 1578520318 4041 3a78feb9e1e3e5b2cd2e1ec04b8e09d5 ""
+  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" 1578520313 36511 85f64e01fe5aff75933d53a3942f3bca ""
+  "dizertatie.aux" 1578520318 4041 3a78feb9e1e3e5b2cd2e1ec04b8e09d5 ""
+  "dizertatie.bbl" 1578520316 2264 d8e4c35455ce1326f873224746eee0ce "bibtex dizertatie"
+  "dizertatie.tex" 1578520313 36511 85f64e01fe5aff75933d53a3942f3bca ""
+  "dizertatie.toc" 1578520318 1055 a8f3dfb77bc60ad3f48a117c1831d4ad ""
   "fii.png" 1561383397 20758 7b0040f1ebfbd8432d9025a9f94b9362 ""
+  "small-2D-CNN-LSTM-Dense.png" 1578514573 48694 ed0ad6fa9599481c1ed6b305c1fcd74e ""
   (generated)
-  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.log"
-  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.pdf"
   "dizertatie.aux"
   "dizertatie.log"
   "dizertatie.toc"
+  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.log"
   "dizertatie.pdf"
+  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.pdf"
