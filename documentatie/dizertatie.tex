@@ -38,7 +38,7 @@
 \counterwithin*{algo}{subsection}
 
 \definecolor{Gray}{gray}{0.9}
-
+\graphicspath{{./images/}}
 
 \counterwithin*{lema}{subsection}
 \linespread{1.3}
@@ -123,11 +123,93 @@
 	\section{Introduction}
 	\vspace{1cm}
 
-	Gait is the movement pattern of the limbs during walking over a solid surface. It varies based on speed, terrain, maneuvering or efficiency of energy. This movement is unique for each human and can be used for recognizing persons from afar, without the need of their cooperation or physical contact, whereas fingerprint, iris or facial do need the physical access or their cooperation \cite{biometrics-comparison}.
+	Gait is the movement pattern of the limbs during walking over a solid surface. It varies based on speed, terrain, maneuvering or efficiency of energy. This movement is unique for each human and can be used for recognizing persons from afar, without the need of their cooperation or physical contact, whereas fingerprint, iris or facial do need the physical access or their cooperation \cite{biometrics-comparison}. Human gait is bipedal, biphasic forward propulsion of the center of gravity of the human body. This movement is the combination of alternate sinuous movements of body segments. The uniqueness of gait is due to:
+	\begin{itemize}
+		\item small differences in the limb movement patterns from one person to another,
+		\item velocity,
+		\item changes in the contact with the surface,
+		\item cycles of kinetic and potential energy \cite{gait-biomecanics}.
+	\end{itemize}
 
-	There are three main categories in which recognition could be classified, Machine Vision (MV), floor sensors and wearable sensors. MV is preferred because it is effective in continuous authentication and is the most non-intrusive approach.
+	Human gait recognition is the process in which a person or an automated system looks at a sequence of frames of a person walking and identifies the unique patters of the movement and matches it, with a degree of certainty, to a person that has his/shes movements known to the one making the identification.
 
-	We will create a system for human gait recognition using machine Vision and Convolutional Neural Networks, that accept a series of frames with the person walking.
+	An automated system can do gait recognition using one or multiple of these three classes of recording the movement: Machine Vision (MV), floor sensors and wearable sensors. MV is focused on the fine movements of a persons body while walking, whereas flor or wearable sensors focus on the kinetic and potential energy cycles. Usually MV is preferred because it is effective in continuous authentication, can identify multiple people at the same time, using just one sensor, whereas the flor or wearable sensors can identify just one person at a time, and is the most non-intrusive approach.
+
+	One of the most popular data sets for gait recognition is the CASIA-B database \cite{casia1}\cite{casia2}\cite{casia3}. It contains both videos and sets of frames, that are split into 2 parts, each containing recordings of 62 people walking. For each person we have 3 categories of footage:
+	\begin{itemize}
+		\item holding a shoulder bag,
+		\item waring a big coat,
+		\item only normal clothes on.
+	\end{itemize} We preferred to use the frame sequences, rather than the videos, because they already have the silhouettes outlined and filled. Samples from each category, of the silhouettes, are shown in Figure~\ref{figure:image-categories-sample}.
+
+	\begin{figure}[h]
+		\centering
+
+		\begin{subfigure}{6cm}
+			\centering\includegraphics[width=5cm]{silhouettes/001-bg-01-090-045.png}
+			\caption{Silhouette of person walking with shoulder bag}
+		\end{subfigure}
+		\hspace{0.5cm}
+		\begin{subfigure}{6cm}
+			\centering\includegraphics[width=5cm]{silhouettes/001-cl-01-090-062.png}
+			\caption{Silhouette of person walking while waring big coat}
+		\end{subfigure}
+
+		\vspace{0.5cm}
+		\begin{subfigure}{6cm}
+			\centering\includegraphics[width=5cm]{silhouettes/001-nm-01-090-066.png}
+			\caption{Silhouette of person walking with normal clothes on}
+		\end{subfigure}
+
+		\caption{Sample images taken from all the different categories, of the CASI-B data set, filmed at 90 degrees from the subject}
+		\label{figure:image-categories-sample}
+	\end{figure}
+
+	For the first tow categories we have 2 sets of sequences, called: bg-01, bg-02, cl-01 and cl-02 and for the normal clothes category we have six sets, from nm-01 to nm-06. Finally each set contains footages from 11 different angles, of only one person walking. The number of frames for each person, set and angle varies from around 40 to over 100. Each frame is a black and white image, of $300 \times 240$ pixels, where the background is black and the persons silhouette is in white. An example of a gait cycle, taken from one of the normal clothes sets is shown in Figure~\ref{figure:gait-cycle}.
+
+	\begin{figure}[h]
+		\centering
+
+		\begin{subfigure}{6cm}
+			\centering\includegraphics[width=5cm]{silhouettes/walk/001-nm-01-090-050.png}
+			\caption{}
+		\end{subfigure}
+		\hspace{0.5cm}
+		\begin{subfigure}{6cm}
+			\centering\includegraphics[width=5cm]{silhouettes/walk/001-nm-01-090-053.png}
+			\caption{}
+		\end{subfigure}
+
+		\vspace{0.5cm}
+		\begin{subfigure}{6cm}
+			\centering\includegraphics[width=5cm]{silhouettes/walk/001-nm-01-090-055.png}
+			\caption{}
+		\end{subfigure}
+		\hspace{0.5cm}
+		\begin{subfigure}{6cm}
+			\centering\includegraphics[width=5cm]{silhouettes/walk/001-nm-01-090-057.png}
+			\caption{}
+		\end{subfigure}
+
+		\vspace{0.5cm}
+		\begin{subfigure}{6cm}
+			\centering\includegraphics[width=5cm]{silhouettes/walk/001-nm-01-090-059.png}
+			\caption{}
+		\end{subfigure}
+		\hspace{0.5cm}
+		\begin{subfigure}{6cm}
+			\centering\includegraphics[width=5cm]{silhouettes/walk/001-nm-01-090-060.png}
+			\caption{}
+		\end{subfigure}
+
+		\caption{Representation of gait cycle taken from CASI-B data set, filmed at 90 degrees from the subject}
+		\label{figure:gait-cycle}
+	\end{figure}
+
+
+	We did not include in the training and evaluation of performance the bg-01, bg-02, cl-01 and cl-02 sets and focused on the nm-01 to nm-06 sets.
+
+	In this theses we will create a system for human gait recognition using Machine Vision and Convolutional Neural Networks, that accepts a series of frames of the person walking as input and will say with a certain confidence which person was in the input. The data used for training, validating and testing our approaches is the CASIA-B database.
 
 	\clearpage
 
@@ -288,7 +370,7 @@
 	\end{table}
 
 	\begin{figure}
-		\includegraphics[width=\textwidth]{3D-CNN.png}
+		\includegraphics[width=\textwidth]{networks/3D-CNN.png}
 		\caption{3D CNN visualized with the chanel numbers omitted, to better visualize the volumetric layers}
 		\label{figure:3D-CNN}
 	\end{figure}
@@ -362,7 +444,7 @@
 	\end{table}
 
 	\begin{figure}
-		\includegraphics[width=\textwidth]{3D-CNN-200-Dense.png}
+		\includegraphics[width=\textwidth]{networks/3D-CNN-200-Dense.png}
 		\caption{3D CNN with additional Dense layer of 200 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers}
 		\label{figure:3D-CNN-200-Dense}
 	\end{figure}
@@ -406,7 +488,7 @@
 	\end{table}
 
 	\begin{figure}
-		\includegraphics[width=\textwidth]{big-2D-CNN-LSTM-Dense.png}
+		\includegraphics[width=\textwidth]{networks/big-2D-CNN-LSTM-Dense.png}
 		\caption{Big 2D CNN with LSTM layer of size 128 and Dense layer of 256 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers}
 		\label{figure:big-2D-CNN-LSTM-Dense}
 	\end{figure}
@@ -439,7 +521,7 @@
 	\end{table}
 
 	\begin{figure}
-		\includegraphics[width=\textwidth]{small-2D-CNN-LSTM-Dense.png}
+		\includegraphics[width=\textwidth]{networks/small-2D-CNN-LSTM-Dense.png}
 		\caption{Small 2D CNN with LSTM layer of size 128 and Dense layer of 256 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers}
 		\label{figure:small-2D-CNN-LSTM-Dense}
 	\end{figure}

@@ -288,12 +288,12 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/latex/ucs/uni-2.def
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/ucs/uni-2.def
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr12.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmbx12.tfm
-INPUT c:/Dizertatie/gait-recognition/documentatie/fii.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/fii.png
+INPUT images/fii.png
+INPUT ./images/fii.png
 OUTPUT c:/Dizertatie/gait-recognition/documentatie/dizertatie.pdf
-INPUT c:/Dizertatie/gait-recognition/documentatie/fii.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/fii.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/fii.png
+INPUT ./images/fii.png
+INPUT ./images/fii.png
+INPUT ./images/fii.png
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmbx12.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmti12.tfm
 INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmbxti10.tfm
@@ -328,26 +328,72 @@ INPUT c:/Dizertatie/gait-recognition/documentatie/dizertatie.toc
 OUTPUT c:/Dizertatie/gait-recognition/documentatie/dizertatie.toc
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omscmr.fd
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omscmr.fd
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN-200-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN-200-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN-200-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN-200-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/3D-CNN-200-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/big-2D-CNN-LSTM-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/big-2D-CNN-LSTM-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/big-2D-CNN-LSTM-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/big-2D-CNN-LSTM-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/big-2D-CNN-LSTM-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/small-2D-CNN-LSTM-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/small-2D-CNN-LSTM-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/small-2D-CNN-LSTM-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/small-2D-CNN-LSTM-Dense.png
-INPUT c:/Dizertatie/gait-recognition/documentatie/small-2D-CNN-LSTM-Dense.png
+INPUT images/silhouettes/001-bg-01-090-045.png
+INPUT ./images/silhouettes/001-bg-01-090-045.png
+INPUT ./images/silhouettes/001-bg-01-090-045.png
+INPUT ./images/silhouettes/001-bg-01-090-045.png
+INPUT ./images/silhouettes/001-bg-01-090-045.png
+INPUT C:/Program Files/MiKTeX 2.9/fonts/tfm/public/cm/cmr10.tfm
+INPUT images/silhouettes/001-cl-01-090-062.png
+INPUT ./images/silhouettes/001-cl-01-090-062.png
+INPUT ./images/silhouettes/001-cl-01-090-062.png
+INPUT ./images/silhouettes/001-cl-01-090-062.png
+INPUT ./images/silhouettes/001-cl-01-090-062.png
+INPUT images/silhouettes/001-nm-01-090-066.png
+INPUT ./images/silhouettes/001-nm-01-090-066.png
+INPUT ./images/silhouettes/001-nm-01-090-066.png
+INPUT ./images/silhouettes/001-nm-01-090-066.png
+INPUT ./images/silhouettes/001-nm-01-090-066.png
+INPUT images/silhouettes/walk/001-nm-01-090-050.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-050.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-050.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-050.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-050.png
+INPUT images/silhouettes/walk/001-nm-01-090-053.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-053.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-053.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-053.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-053.png
+INPUT images/silhouettes/walk/001-nm-01-090-055.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-055.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-055.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-055.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-055.png
+INPUT images/silhouettes/walk/001-nm-01-090-057.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-057.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-057.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-057.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-057.png
+INPUT images/silhouettes/walk/001-nm-01-090-059.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-059.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-059.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-059.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-059.png
+INPUT images/silhouettes/walk/001-nm-01-090-060.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-060.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-060.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-060.png
+INPUT ./images/silhouettes/walk/001-nm-01-090-060.png
+INPUT images/networks/3D-CNN.png
+INPUT ./images/networks/3D-CNN.png
+INPUT ./images/networks/3D-CNN.png
+INPUT ./images/networks/3D-CNN.png
+INPUT ./images/networks/3D-CNN.png
+INPUT images/networks/3D-CNN-200-Dense.png
+INPUT ./images/networks/3D-CNN-200-Dense.png
+INPUT ./images/networks/3D-CNN-200-Dense.png
+INPUT ./images/networks/3D-CNN-200-Dense.png
+INPUT ./images/networks/3D-CNN-200-Dense.png
+INPUT images/networks/big-2D-CNN-LSTM-Dense.png
+INPUT ./images/networks/big-2D-CNN-LSTM-Dense.png
+INPUT ./images/networks/big-2D-CNN-LSTM-Dense.png
+INPUT ./images/networks/big-2D-CNN-LSTM-Dense.png
+INPUT ./images/networks/big-2D-CNN-LSTM-Dense.png
+INPUT images/networks/small-2D-CNN-LSTM-Dense.png
+INPUT ./images/networks/small-2D-CNN-LSTM-Dense.png
+INPUT ./images/networks/small-2D-CNN-LSTM-Dense.png
+INPUT ./images/networks/small-2D-CNN-LSTM-Dense.png
+INPUT ./images/networks/small-2D-CNN-LSTM-Dense.png
 INPUT c:/Dizertatie/gait-recognition/documentatie/dizertatie.bbl
 INPUT c:/Dizertatie/gait-recognition/documentatie/dizertatie.bbl
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/ucs/uni-32.def
@@ -367,6 +413,8 @@ INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi6.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi8.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
+INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb
 INPUT C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr6.pfb

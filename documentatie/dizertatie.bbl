@@ -5,6 +5,26 @@ H.~Srivastava, ``A comparison based study on biometrics for human
   recognition,'' {\em IOSR Journal of Computer Engineering}, vol.~15(1),
   pp.~22--29, 2013.
 
+\bibitem{gait-biomecanics}
+A.~E. Minetti, ``The biomechanics of skipping gaits: a third locomotion
+  paradigm?,'' {\em Proc Biol Sci}, vol.~265, pp.~1227--1235, July 1998.
+
+\bibitem{casia1}
+S.~Zheng, J.~Zhang, K.~Huang, R.~He, and T.~Tan, ``Robust view transformation
+  model for gait recognition,'' in {\em International Conference on Image
+  Processing(ICIP)}, (Brussels, Belgium), 2011.
+
+\bibitem{casia2}
+S.~Yu, D.~Tan, and T.~Tan, ``A framework for evaluating the effect of view
+  angle, clothing and carrying condition on gait recognition,'' in {\em Proc.
+  of the 18′th International Conference on Pattern Recognition (ICPR)}, (Hong
+  Kong, China), August 2006.
+
+\bibitem{casia3}
+R.~He, T.~Tan, and L.~Wang, ``Robust recovery of corrupted low-rank matrix by
+  implicit regularizers,'' {\em IEEE Transactions on Pattern Analysis and
+  Machine Intelligence}, vol.~36, pp.~770--783, April 2014.
+
 \bibitem{gait-silhouette-nn}
 M.~Mohualdeen and M.~Baker, ``Gait recognition based on silhouettes sequences
   and neural networks for human identification,'' {\em Indonesian Journal of
@@ -29,22 +49,6 @@ T.~Wolf, M.~Babaee, and G.~Rigoll, ``Multi-view gait recognition using 3d
 \bibitem{VGR-Net}
 T.~Daksh, A.~Divyansh, A.~Punjal, and N.~Aditya, ``Vgr-net: A view invariant
   gait recognition network,'' October 2017.
-
-\bibitem{casia1}
-S.~Zheng, J.~Zhang, K.~Huang, R.~He, and T.~Tan, ``Robust view transformation
-  model for gait recognition,'' in {\em International Conference on Image
-  Processing(ICIP)}, (Brussels, Belgium), 2011.
-
-\bibitem{casia2}
-S.~Yu, D.~Tan, and T.~Tan, ``A framework for evaluating the effect of view
-  angle, clothing and carrying condition on gait recognition,'' in {\em Proc.
-  of the 18′th International Conference on Pattern Recognition (ICPR)}, (Hong
-  Kong, China), August 2006.
-
-\bibitem{casia3}
-R.~He, T.~Tan, and L.~Wang, ``Robust recovery of corrupted low-rank matrix by
-  implicit regularizers,'' {\em IEEE Transactions on Pattern Analysis and
-  Machine Intelligence}, vol.~36, pp.~770--783, April 2014.
 
 \bibitem{shape-index}
 J.~JKoenderink and A.~J. van Doorn, ``Surface shape and curvature scales,''
