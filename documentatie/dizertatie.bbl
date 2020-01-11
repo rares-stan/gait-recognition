@@ -50,8 +50,42 @@ T.~Wolf, M.~Babaee, and G.~Rigoll, ``Multi-view gait recognition using 3d
 T.~Daksh, A.~Divyansh, A.~Punjal, and N.~Aditya, ``Vgr-net: A view invariant
   gait recognition network,'' October 2017.
 
+\bibitem{overfitting-example-image}
+S.~N. Kasturi, {\em Underfitting and Overfitting in machine learning and how to
+  deal with it !!!}
+\newblock Jun 2019.
+\newblock URL:
+  https://towardsdatascience.com/underfitting-and-overfitting-in-machine-learning-and-how-to-deal-with-it-6fe4a8a49dbf.
+
+\bibitem{rnn}
+D.~E. Rumelhart, G.~E. Hinton, and R.~J. Williams, ``Learning internal
+  representations by error propagation,'' {\em InParallel Dist. Proc},
+  pp.~318--362, MIT Press, 1986.
+
 \bibitem{shape-index}
 J.~JKoenderink and A.~J. van Doorn, ``Surface shape and curvature scales,''
   {\em Image and Vision Computing}, vol.~10, pp.~557--564, October 1992.
+
+\bibitem{lstm}
+S.~Hochreiter and J.~Schmidhuber, ``Long short-term memory,'' {\em Neural
+  Computation}, pp.~1735--1780, 1997;9(8).
+
+\bibitem{nn-svg}
+A.~LeNail, ``Nn-svg: Publication-ready neural network architecture
+  schematics,'' {\em Journal of Open Source Software}, pp.~4(33), 747, 2019.
+
+\bibitem{adagrad-optimizer}
+J.~Duchi, E.~Hazan, and Y.~Singer, ``Adaptive subgradient methods for online
+  learning and stochastic optimization,'' {\em The Journal of Machine Learning
+  Research}, vol.~12, p.~2121–2159, 2011.
+
+\bibitem{rmsprop-optimizer}
+T.~Tieleman and G.~Hinton, ``Lecture 6.5-rmsprop: Divide the gradient by a
+  running average of its recent magnitude,'' {\em COURSERA: Neural Networks for
+  Machine Learning}, pp.~4, 26--31, 2012.
+
+\bibitem{adam-optimizer}
+K.~Diederik and B.~Jimmy, ``Adam: A method for stochastic optimization,'' {\em
+  International Conference on Learning Representations}, December 2014.
 
 \end{thebibliography}

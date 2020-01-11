@@ -73,7 +73,7 @@
 			\textit{\textbf{Rareș-Alexandru Stan}}
 			\\
 			\vspace{2cm}
-			\textbf{Session:} \textit{July, 2019}
+			\textbf{Session:} \textit{February, 2020}
 			\\
 			\vspace{1.5cm}
 			\textbf{Scientific Coordinator}
@@ -105,7 +105,7 @@
 				\textit{\textbf{Rareș-Alexandru Stan}}
 				\\
 				\vspace{3cm}
-				\textbf{Session:} \textit{July, 2019}
+				\textbf{Session:} \textit{February, 2020}
 				\\
 			\end{large}
 			\vspace{3cm}
@@ -263,15 +263,26 @@
 	\section{Contributions}
 	\vspace{1cm}
 
-	The two classes of methods used for Gait Recognition using Machine Vision are: Model-Base and Model-Free. In the former class there are methods that preprocess the input data or extract some other information from it, which is used for classification, whereas the latter uses the base data, only with preprocessing meant to clean and sanitize the input, for classification. In this theses we have tried both Model-Based and Model-Free approaches for Human Gait Recognition and obtained the best results with one of the Model-Free approaches.
+	The two classes of methods used for Gait Recognition using Machine Vision are: Model-Base and Model-Free. In the former class there are methods that heavily preprocess the input data or extract features that are meant to be used for classification, done by a machine learning algorithm, whereas the latter uses the base data, only with little preprocessing meant to clean and sanitize the input and the machine learning algorithm will extract what features that it sees fit for classifying the data. In this theses we have tried both Model-Based and Model-Free approaches for Human Gait Recognition and obtained the best results with one of the Model-Free approaches.
 
-	For training and testing the CASIA-B database \cite{casia1}\cite{casia2}\cite{casia3} was used, as it already has the silhouettes extracted from the videos, which gave us the possibility to focus on the recognition methods. We have used the first part of the database, which included silhouettes for 62 people, of the 124 total. The database has been split in three categories: training, nm01-nm04, validation nm-05 and testing nm-06.
+	For training and testing the CASIA-B database \cite{casia1}\cite{casia2}\cite{casia3} was used, as it already has the silhouettes extracted from the videos, which gave us the possibility to focus on the recognition methods. We have used the first part of the database, which included silhouettes for 62 people, of the 124 total. The data sets has been split in three categories: training, nm01-nm04, validation nm-05 and testing nm-06. Each set has a specific purpose, described bellow:
+	\begin{itemize}
+		\item the training set is the one with which the Neural Networks will learn to extract the needed features for proper classification, it being fed to the network and if the output is wrong, the algorithm will self adjust in a way to correct the misclassified inputs;
+		\item the validation data set is used to make sure that the Neural Network does not overfit for the specific training input, but instead generalizes for unseen data, as seen in Figure~\ref{figure:overfitting-example};
+		\item the final set of data, the testing set, is used for evaluating the models, after the training is finished, for this one the algorithm output is just compared with the expected output and the final accuracy is obtained.
+	\end{itemize}
 
-	We have tried both Model-Based and Model-Free approaches. The first model we tries had the input images cropped, smoothed and then a surface curvature metric extracted from the silhouette and then classified using a Convolutional Neural Network. After that the rest of the models had the input images centered around the silhouette and cropped, then feed to either classic Convolutional Neural Networks (CNN) or combinations of CNN and Recurrent Neural Network (RNN) for classification. Lastly a comparison between all the models described.
+	\begin{figure}
+		\includegraphics[width=\textwidth]{overfitting-example.png}
+		\caption{Comparison of underfitting, overfitting and optimum models \cite{overfitting-example-image}}
+		\label{figure:overfitting-example}
+	\end{figure}
 
-	Through surface curvature metric we refer to a function that can map the shape, position and altitude, from an image with three dimensional objects, to a numerical value, for each pixel in the original image.
+	The first model we tried, classified as a Model-Based approach, had the input images cropped, smoothed and then a surface curvature metric extracted from the silhouette and then classified using a Convolutional Neural Network In this model the CNN was not only used to extract features from images, but also extract features from the movement between frames. To express movement or temporality using CNNs, there needs to be added an additional dimension to the input, representing a sequence of frames. Through surface curvature metric we refer to a function that can map the shape, position and altitude, from an image with three dimensional objects, to a numerical value, for each pixel in the original image. Smoothing refers to the process of removing noise or fine-scale structures from images, resulting in a less jagged edges and smooth curves/transitions.
 
-	Smoothing refers to the process of removing noise or fine-scale structures from images, resulting in a less jagged edges and sharp curves/transitions.
+	The next models, that are classified as Model-Free approaches, have the input images centered around the silhouette and cropped, then fed to either classic Convolutional Neural Networks (CNN) or combinations of CNN and Recurrent Neural Network (RNN) \cite{rnn} for classification. With these models we explore the classification and feature extraction from movement through time is done by different passage of time representations. One such representation is achieved using a third dimension for Convolution, described in the Model-Based approach. A second method of representation is with using memory, like in Recurrent Networks, so each node can chose when to recall certain features from the past inputs of the series. This approach has very good results in language processing and generation, being able to recall themes, subjects or events, described in past inputs.
+
+	Finally a comparison between all the trained models, based on the percentage of correctly classified frame sequences from the testing data set, which has not been used in training, database augmentation or overfitting prevention.
 
 	\clearpage
 
@@ -318,7 +329,7 @@
 
 	Recurrent Neural Networks (RNN) are mostly the same as standard Neural Networks, with the added bonus of each neuron having its owen memory. The activation function is time-varied. Thanks to having internal memory for each node, RNNs can process time sequences of inputs, which makes them great for video processing, speech recognition, and generating sequences.
 
-	One such king of RNN is Long Short-Term Memory (LSTM) which avoids the vanishing and exploding gradient. Besides the standard RNN model, they have recurrent gates, called forget gates.
+	One such king of RNN is Long Short-Term Memory (LSTM) \cite{lstm} which avoids the vanishing and exploding gradient. Besides the standard RNN model, they have recurrent gates, called forget gates.
 
 
 	\subsection{Model-Based Approach}
@@ -371,7 +382,7 @@
 
 	\begin{figure}
 		\includegraphics[width=\textwidth]{networks/3D-CNN.png}
-		\caption{3D CNN visualized with the chanel numbers omitted, to better visualize the volumetric layers}
+		\caption{3D CNN visualized with the chanel numbers omitted, to better visualize the volumetric layers, generated using \cite{nn-svg}}
 		\label{figure:3D-CNN}
 	\end{figure}
 
@@ -417,7 +428,7 @@
 
 	Out of the ones listed above we have used early stopping and adding dropout to all the layers, except the input layer. If the network did not obtain a better accuracy on the validation set than the best recorded yet, in 20 epochs, we stopped the training and run the best model on the testing set. Dropout picks at random a number of nodes, in the current layer, which will be used, so that all the nodes have equal chances to have their output evaluated and not overridden by other nodes on the same layer. In our models we chose to use a dropout on half of our nodes on each layer.
 
-	When learning, neural networks need a function that calculates the value with which the weights of the nodes are updated, the most popular function is stochastic gradient descent, that has a fixed learning rate, used during the entire training. In later years other functions appeared that improved the stochastic gradient descent, to reduce the learning time, called AdaGrad, RMSProp and Adam, that combines the advantages of both AdaGrad and RMSProp.
+	When learning, neural networks need a function that calculates the value with which the weights of the nodes are updated, the most popular function is stochastic gradient descent, that has a fixed learning rate, used during the entire training. In later years other functions appeared that improved the stochastic gradient descent, to reduce the learning time, called AdaGrad \cite{adagrad-optimizer}, RMSProp \cite{rmsprop-optimizer} and Adam \cite{adam-optimizer}, that combines the advantages of both AdaGrad and RMSProp.
 	We chose to also add the Adam optimization for the learning process.
 
 	\begin{table}[h]
@@ -445,7 +456,7 @@
 
 	\begin{figure}
 		\includegraphics[width=\textwidth]{networks/3D-CNN-200-Dense.png}
-		\caption{3D CNN with additional Dense layer of 200 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers}
+		\caption{3D CNN with additional Dense layer of 200 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers, generated using \cite{nn-svg}}
 		\label{figure:3D-CNN-200-Dense}
 	\end{figure}
 
@@ -489,7 +500,7 @@
 
 	\begin{figure}
 		\includegraphics[width=\textwidth]{networks/big-2D-CNN-LSTM-Dense.png}
-		\caption{Big 2D CNN with LSTM layer of size 128 and Dense layer of 256 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers}
+		\caption{Big 2D CNN with LSTM layer of size 128 and Dense layer of 256 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers, generated using \cite{nn-svg}}
 		\label{figure:big-2D-CNN-LSTM-Dense}
 	\end{figure}
 
@@ -522,7 +533,7 @@
 
 	\begin{figure}
 		\includegraphics[width=\textwidth]{networks/small-2D-CNN-LSTM-Dense.png}
-		\caption{Small 2D CNN with LSTM layer of size 128 and Dense layer of 256 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers}
+		\caption{Small 2D CNN with LSTM layer of size 128 and Dense layer of 256 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers, generated using \cite{nn-svg}}
 		\label{figure:small-2D-CNN-LSTM-Dense}
 	\end{figure}
 

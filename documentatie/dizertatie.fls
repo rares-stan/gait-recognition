@@ -374,6 +374,11 @@ INPUT ./images/silhouettes/walk/001-nm-01-090-060.png
 INPUT ./images/silhouettes/walk/001-nm-01-090-060.png
 INPUT ./images/silhouettes/walk/001-nm-01-090-060.png
 INPUT ./images/silhouettes/walk/001-nm-01-090-060.png
+INPUT images/overfitting-example.png
+INPUT ./images/overfitting-example.png
+INPUT ./images/overfitting-example.png
+INPUT ./images/overfitting-example.png
+INPUT ./images/overfitting-example.png
 INPUT images/networks/3D-CNN.png
 INPUT ./images/networks/3D-CNN.png
 INPUT ./images/networks/3D-CNN.png
