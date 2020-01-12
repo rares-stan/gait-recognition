@@ -13,4 +13,4 @@
 \contentsline {subsubsection}{\numberline {4.4.1}3D Convolution}{14}
 \contentsline {subsubsection}{\numberline {4.4.2}LSTM}{16}
 \contentsline {section}{\numberline {5}Conclusions}{20}
-\contentsline {section}{\numberline {6}Bibliography}{21}
+\contentsline {section}{\numberline {6}Bibliography}{22}

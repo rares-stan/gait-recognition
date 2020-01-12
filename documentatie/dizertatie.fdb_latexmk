@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex dizertatie"] 1578775675 "dizertatie.aux" "dizertatie.bbl" "dizertatie" 1578775677
+["bibtex dizertatie"] 1578860992 "dizertatie.aux" "dizertatie.bbl" "dizertatie" 1578860994
   "C:/Program Files/MiKTeX 2.9/bibtex/bst/base/ieeetr.bst" 826288124 16932 60a0804ebef57891abf0021fa74d0cd1 ""
-  "bibliografie.bib" 1578775614 5257 d2e83f3c12c3efceb1e461db77622c91 ""
-  "dizertatie.aux" 1578775677 5537 b0e1e36e43709a994551714a3863d05a ""
+  "bibliografie.bib" 1578858790 5541 284695ff936bee4785d24aec01ed2f89 ""
+  "dizertatie.aux" 1578860993 5981 3665caffc64ce1c5066a66f31c049392 ""
   "dizertatie.bcf" 0 -1 0 ""
   (generated)
-  "dizertatie.blg"
   "dizertatie.bbl"
-["pdflatex"] 1578775675 "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" "c:/Dizertatie/gait-recognition/documentatie/dizertatie.pdf" "dizertatie" 1578775677
+  "dizertatie.blg"
+["pdflatex"] 1578860992 "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" "c:/Dizertatie/gait-recognition/documentatie/dizertatie.pdf" "dizertatie" 1578860994
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233951848 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -202,12 +202,12 @@
   "C:/Program Files/MiKTeX 2.9/tex/latex/xcolor/xcolor.sty" 1463131981 57049 34128738f682d033422ca125f82e5d62 ""
   "C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map" 1494750657 1884968 edfe4f6723907840dadd3e89f425c643 ""
   "C:/Users/Alex/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1498312822 3822394 661a37fae5242799f51243ac629df386 ""
-  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.aux" 1578775677 5537 b0e1e36e43709a994551714a3863d05a ""
-  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" 1578775669 43713 a3bcb5c376a0c91d8b607d9f83ea6a92 ""
-  "dizertatie.aux" 1578775677 5537 b0e1e36e43709a994551714a3863d05a ""
-  "dizertatie.bbl" 1578775675 3884 778654b6ae163bb9e6a7c06c4b460311 "bibtex dizertatie"
-  "dizertatie.tex" 1578775669 43713 a3bcb5c376a0c91d8b607d9f83ea6a92 ""
-  "dizertatie.toc" 1578775677 1061 7585b6acec9825bbc19d927c234ee302 ""
+  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.aux" 1578860993 5981 3665caffc64ce1c5066a66f31c049392 ""
+  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" 1578860989 47358 f3fca19f2bf6283e5012006ee222e4a2 ""
+  "dizertatie.aux" 1578860993 5981 3665caffc64ce1c5066a66f31c049392 ""
+  "dizertatie.bbl" 1578860992 4089 1ad397166d6a46652c7acd9dba65a19d "bibtex dizertatie"
+  "dizertatie.tex" 1578860989 47358 f3fca19f2bf6283e5012006ee222e4a2 ""
+  "dizertatie.toc" 1578860993 1061 a63411f896f03a8341b2e72f71a5d612 ""
   "images/fii.png" 1561383397 20758 7b0040f1ebfbd8432d9025a9f94b9362 ""
   "images/networks/3D-CNN-200-Dense.png" 1578514326 50429 bcadb83d32640612e4582c1704132d44 ""
   "images/networks/3D-CNN.png" 1578514400 45411 16436dbc1ea1abe8a6c20096120bf42d ""
@@ -224,9 +224,9 @@
   "images/silhouettes/walk/001-nm-01-090-059.png" 1140779567 743 ce524d00313fd560d63b3e36fd709b55 ""
   "images/silhouettes/walk/001-nm-01-090-060.png" 1140779567 825 bbdad77e34573c8ad7bb330c8527ca13 ""
   (generated)
+  "dizertatie.pdf"
   "c:/Dizertatie/gait-recognition/documentatie/dizertatie.pdf"
+  "dizertatie.log"
   "c:/Dizertatie/gait-recognition/documentatie/dizertatie.log"
   "dizertatie.aux"
-  "dizertatie.pdf"
-  "dizertatie.log"
   "dizertatie.toc"

@@ -36,6 +36,11 @@ M.~Alotaibi and A.~Mahmood, ``Improved gait recognition based on specialized
   deep convolutional neural network,'' {\em Computer Vision and Image
   Understanding}, vol.~164, pp.~103--110, 2017.
 
+\bibitem{gei}
+J.~Han and B.~Bhanu, ``Individual recognition using gait energy image,'' {\em
+  IEEE Transactions on Pattern Analysis and Machine Intelligence}, vol.~28,
+  pp.~316--322, February 2006.
+
 \bibitem{gait-with-curvature-map}
 H.~El-Alfy, I.~Mitsugami, and Y.~Yagi, ``Gait recognition based on normal
   distance maps,'' {\em IEEE Transactions on Cybernetics}, vol.~48,

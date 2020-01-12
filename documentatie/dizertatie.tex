@@ -247,7 +247,7 @@
 	Molhema Mohualdeen and Magdi Baker \cite{gait-silhouette-nn} have proposed a model-based approach for the Gait Recognition problem using Region os Interest (ROI), Discrete Wavelet Transform (DWT), Edges, Gait Cycle and Neural Networks.
 	ROI was used in the preprocessing phase to reduce data and extract the exact silhouette from each frame, by cropping. Next, in the feature extraction phase, they used DWT for multi-scale analysis, using diagonal, horizontal and vertical details of the three levels low pass and high pass filters on two dimensions DWT. Beside 3L-2D-DWT they used Edge Detection for magnitude and orientation and box technique for step and cycle length, using the with of the bounding box. Estimating the Gait Cycle was done by combining the silhouettes between the tow main phases of Gait and combining them together for each person and measuring the combination area and the width of the white shape boundary represents the step length. Classification was done using a Back Propagation Neural Network (BPNN).
 
-	Munif Alotaibi and Ausif Mahmood \cite{gait-with-gei} propose a different type of preprocessing with a Convolutional Neural Network for classification. The processioning is done using the Gait Energy Image (GEI), defined as: $GEI(x, y)=1/s\sum_{t-1}^{s}F^t(x, y)$, where $s$ is the total number of frames representing the Gait Cycle and $F^t(x, y)$ is the silhouette of the subject at the time interval $t$. For determining the Gait Cycle it is used the bounding box changes method and the silhouettes are then resized to $140 * 140$ pixels. The Neural Network has 4 pairs of Convolution and Pooling layers, each with eight $5 * 5$ filters and eight sub-sampling maps with pooling factor $2$. For the activation function of the Convolutional layers it is used the Hyperbolic Tangent function. After the last Convolution and Pooling pair a Dense Layer with 124 nodes and SoftMax activation functions is used, to classify the data. For adding a new user to be recognized by the system, the old model is taken and froze the Convolutional and Pooling layers, so they are not changed during the new training period, and just the Dense Layer is modified, by adding a new node, and retrained.
+	Munif Alotaibi and Ausif Mahmood \cite{gait-with-gei} propose a different type of preprocessing with a Convolutional Neural Network for classification. The processioning is done using the Gait Energy Image (GEI) \cite{gei}, defined as: $GEI(x, y)=1/s\sum_{t-1}^{s}F^t(x, y)$, where $s$ is the total number of frames representing the Gait Cycle and $F^t(x, y)$ is the silhouette of the subject at the time interval $t$. For determining the Gait Cycle it is used the bounding box changes method and the silhouettes are then resized to $140 * 140$ pixels. The Neural Network has 4 pairs of Convolution and Pooling layers, each with eight $5 * 5$ filters and eight sub-sampling maps with pooling factor $2$. For the activation function of the Convolutional layers it is used the Hyperbolic Tangent function. After the last Convolution and Pooling pair a Dense Layer with 124 nodes and SoftMax activation functions is used, to classify the data. For adding a new user to be recognized by the system, the old model is taken and froze the Convolutional and Pooling layers, so they are not changed during the new training period, and just the Dense Layer is modified, by adding a new node, and retrained.
 
 	Hazem El-Alfy, Ikuhisa Mitsugami and Yasushi Yagi \cite{gait-with-curvature-map} build a system in which the preprocessing is done using the Gauss Map of the silhouettes and classification they use Euclidean Distance on the feature vectors between the person to be recognized and the existing database. In more details, the Gauss Maps wore done on the silhouette's surface, evaluated locally, to overcome the lack of the third dimension and made all the normal vectors point outwards the silhouette. Gauss Mapping was done on a silhouette with it's boundary extracted then smoothed using a parametric cubic spline interpolation, for it's continuity at zero, first and second order with control points being every fifth pixel of the boundary. All of the silhouettes pixels are then Distance Transformed where the distance is calculated as follows $d=max(|x_1-x_2|, |y_1-y_2|)$, where $(x_1, y_1)$ and $(x_2, y_2)$ are two distinct pixels from the image and then are computed the contour lines of the distance map. After this the image is divided in a regular grid and for each cell in computed a histogram of all the normal vectors in that contour cell. All of the cell are combined in a feature vector and it is repeated for all contours in that image. Last all the feature vectors for that image are merged into the final feature descriptor, the NDM. All of the NDMs from a full gait cycle are integrated together, using their average for the aggregate cycle descriptor. Over this aggregated feature vector the Euclidean Distance is calculated.
 
@@ -257,7 +257,7 @@
 
 	One such model is proposed by Wolf et al \cite{Wolf2016MultiviewGR}, using 3D Convolution to represent the passing of time. The network is comprised if 7 convolution and pooling payers, using $3 \times 3 \times 3$ filter size and 3, 64, 128, 128, 256, 256 and 512 chanel from layer 1 to 7. The pooling layers generally have $2 \times 2 \times 2$ dimension, with layer 1 and 3 being exceptions, with size $2 \times 2 \times 1$, to avoid collapsing to early the time dimension. After the convolution phase of the network, tow dense layers of 4096 nodes are used for classification and a final layer with softmax for labeling the output. The input for the neural network is a Tensor with the following dimensions $192 \times 128 \times 16$, where the last dimension is time and first 2 are the sizes of each frame.
 
-	Thapar Daksh, Aggarwal Divyansh, Agarwal Punjal and Nigam Aditya \cite{VGR-Net} propose a Hierarchically Generalized Multi-View Architecture, which takes as input a Tensor of shape $16 \times 112 \times 112$, with all the convolution layers having ReLU activation. The network is composed of tow main parts: angle prediction and classification using neural networks trained only for one specific angle. Voting is done on the outputs of all the angle specific networks. The first network uses part of the convolution layers from a pre-trained network and then passed to 2 dense layers, each of 4096 nodes and an output layer with 11 nodes, one for each angle in the dataset. For the angle specific classification the same convolution layers are used, but followed by 7 dense layers, of 4096 nodes and an output layer for labeling the output. The dense layers use the ReLU activation and the output ones use softmax.
+	Thapar Daksh, Aggarwal Divyansh, Agarwal Punjal and Nigam Aditya \cite{VGR-Net} propose a Hierarchically Generalized Multi-View Architecture, which takes as input a Tensor of shape $16 \times 112 \times 112$, with all the convolution layers having ReLU activation. The network is composed of tow main parts: angle prediction and classification using neural networks trained only for one specific angle. Voting is done on the outputs of all the angle specific networks. The first network uses part of the convolution layers from a pre-trained network and then passed to 2 dense layers, each of 4096 nodes and an output layer with 11 nodes, one for each angle in the data set. For the angle specific classification the same convolution layers are used, but followed by 7 dense layers, of 4096 nodes and an output layer for labeling the output. The dense layers use the ReLU activation and the output ones use softmax.
 	\clearpage
 
 	\section{Contributions}
@@ -283,6 +283,8 @@
 	The next models, that are classified as Model-Free approaches, have the input images centered around the silhouette and cropped, then fed to either classic Convolutional Neural Networks (CNN) or combinations of CNN and Recurrent Neural Network (RNN) \cite{rnn} for classification. With these models we explore the classification and feature extraction from movement through time is done by different passage of time representations. One such representation is achieved using a third dimension for Convolution, described in the Model-Based approach. A second method of representation is with using memory, like in Recurrent Networks, so each node can chose when to recall certain features from the past inputs of the series. This approach has very good results in language processing and generation, being able to recall themes, subjects or events, described in past inputs.
 
 	Finally a comparison between all the trained models, based on the percentage of correctly classified frame sequences from the testing data set, which has not been used in training, database augmentation or overfitting prevention.
+
+	When evaluating the performance of our models, the testing data set is used, by feeding each frame set one at a time and comparing the correct label with the label with the highest confidence of the network output, this method is also known as Rank-1 Identification Rate. All the correct and incorrect classifications are counted and the accuracy is calculated in percentages as follows: $\frac{C_T}{C_T + W_T}$, where $C_T$ is the total number of input sequences correctly labeled, by the model, and $W_T$ is the total number of the inputs classified incorrectly. $C_T + W_T$ give the total number of the input sequences from the testing set of data.
 
 	\clearpage
 
@@ -418,7 +420,7 @@
 
 	In Table~\ref{table:dense-CNN} all the layers are described with each ones size, number of channels and activation functions and it is visually represented in Figure~\ref{figure:3D-CNN-200-Dense}, with the chanel numbers omitted.
 
-	Preventing overfitting is a very real problem when using the CASIA-B dataset \cite{casia1}\cite{casia2}\cite{casia3} due to the very few training data available, only four examples for each filming angle for all the people. A couple of examples of measures to reduce or prevent overfitting are:
+	Preventing overfitting is a very real problem when using the CASIA-B data set \cite{casia1}\cite{casia2}\cite{casia3} due to the very few training data available, only four examples for each filming angle for all the people. A couple of examples of measures to reduce or prevent overfitting are:
 	\begin{itemize}
 		\item add more training data,
 		\item use dropout, so that all the nodes in the network are activated,
@@ -548,22 +550,48 @@
 
 	Human gait recognition using machine vision aims to identify humans based on their walking style and manner in a non intrusive manner. This paper covers a couple of approaches using Deep Neural Networks to identify people by their gait, using 3D Convolutional Neural Networks or Convolutional Recurrent Neural Networks, with varying degrees of success. One model proved to obtain competitive performance.
 
-	All the models have been trained, validated and tested using all the 11 available angles, for each person, from the first half of the CASIA-B dataset. Comparing all the approaches described, the following Table~\ref{table:all-result} and find that the Model-Free approaches have learned any useful features for classification and of those ones the 3D Convolutional Neural Network performed the best, obtaining an accuracy of 91.7\% on testing. Keep in mind that all the inputs have been normalized and sanitized for the neural networks.
+	All the models have been trained, validated and tested using all the 11 available angles, for each person, from the first half of the CASIA-B data set. Comparing all the approaches described we obtain the following Table~\ref{table:all-result} and find that the Model-Free approaches have learned useful features for classification and of those ones the 3D Convolutional Neural Network performed the best, obtaining an accuracy of 91.7\% on testing. Keep in mind that all the inputs have been normalized and sanitized for the neural networks.
 
 	\begin{table}[h]
 		\centering
 		\renewcommand{\arraystretch}{1.5}
 
-		\caption{Comparison of all the approaches}
+		\caption{Comparison of all the approaches on the test data set}
 		\label{table:all-result}
 
-		\begin{tabularx}{\textwidth}{XXXX}
-			\textbf{Model name} & \textbf{Test Accuracy} & \textbf{No. parameters} \\ \hline
-			Shape Index + 3D CNN    & 1.62\%         & $\approx 650.000$        \\ \hline
-			3D CNN                  & 59\%           & $\approx 650.000$        \\ \hline
-			2D Deep CNN + LSTM      & 73.7\%         & $\approx 5.100.000$      \\ \hline
-			2D CNN + LSTM           & 74\%           & $\approx 250.000$        \\ \hline
-			3D CNN + Dense(200)     & 91.7\%         & $\approx 650.000$        \\
+		\begin{tabular}{llll}
+			\textbf{Model name} & \textbf{All view angles} & \textbf{$90^\circ$ view angle} & \textbf{Parameters} \\ \hline
+			Shape Index + 3D CNN    & 1.62\% & \textbf{\textendash} & $\approx 650.000$   \\ \hline
+			3D CNN                  & 59\%   & 89\%                 & $\approx 650.000$   \\ \hline
+			2D Deep CNN + LSTM      & 73.7\% & 80.6\%               & $\approx 5.100.000$ \\ \hline
+			2D CNN + LSTM           & 74\%   & 83.8\%               & $\approx 250.000$   \\ \hline
+			3D CNN + Dense(200)     & 91.7\% & 91.9\%               & $\approx 650.000$   \\
+		\end{tabular}
+	\end{table}
+
+	From the results presented above we can say that using and representing time as an additional dimension in the input for Convolutional Neural Networks, calculating convolution over tree dimensions, obtain better accuracy than usual two dimensional convolution using internal memory from a Recurrent Neural Network. It may be because the differences between different frames, from the same input sequence, are to small and the LSTM nodes confuse or chose to not remember some relevant past features, whereas in convolution features are combined together of filtered out if there are not as good descriptors as others. When testing only for one view angle, $90^\circ$, the results are not much better for the 3D CNN + Dense model, but our other model had improved considerably, especially the simple 3D CNN, from 59\% to 89\%, a 30 points increase, showing us that indeed this model lacked power in classification, when dealing with multiple view angles.
+
+	When comparing with existing approach we also see that when the classification algorithm is left alone to extract the best features to utilize outperform the ones in which the features are already extracted using image processing algorithms. In Munif Alotaibi and Ausif Mahmood \cite{gait-with-gei} they obtain 98.3\% on the normal clothes data set, using only the 90 degrees viewing angle, where the best we obtained 91.9\%, whereas Hazem El-Alfy, Ikuhisa Mitsugami and Yasushi Yagi \cite{gait-with-curvature-map} obtain 16.7\%, for the same viewing angle. Munif Alotaibi and Ausif Mahmood represented the information gained from the passing of time by combining all the silhouette frames into one, using Gait Energy Image (GEI) \cite{gei}, on the other hand Hazem El-Alfy, Ikuhisa Mitsugami and Yasushi Yagi extracted curvature information from frames composing a full gait cycle and passed it to a classification algorithm. A comparison with other approaches can be found in Table~\ref{table:camparison-results}.
+
+	\begin{table}[h]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+
+		\caption{Comparison of our best two approaches with other existing results}
+		\label{table:camparison-results}
+
+		\begin{tabularx}{\textwidth}{
+			>{\hsize=0.5\hsize}X
+			>{\hsize=0.25\hsize}X
+			>{\hsize=0.25\hsize}X
+		}
+			\textbf{Model name} & \textbf{All view angles} & \textbf{$90^\circ$ view angle}\\ \hline
+			VGR-net \cite{VGR-Net}             & \textbf{\textendash} & 97.08\%\\ \hline
+			MVCNN \cite{Wolf2016MultiviewGR}   & \textbf{\textendash} & 99.9\%\\ \hline
+			NDM \cite{gait-with-curvature-map} & \textbf{\textendash} & 16.7\%\\ \hline
+			GEI deep CNN \cite{gait-with-gei}  & \textbf{\textendash} & 98.3\%\\ \hline
+			2D CNN + LSTM (ours)               & 74\%                 & 83.8\%\\ \hline
+			3D CNN + Dense(200) (ours)         & 91.7\%               & 91.9\%\\
 		\end{tabularx}
 	\end{table}
 

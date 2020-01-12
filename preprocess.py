@@ -7,7 +7,7 @@ import pickle
 
 OUTPUT_H = 120
 OUTPUT_W = 60
-OUTPUT_FRAMES = 30
+OUTPUT_FRAMES = 80
 
 
 def read_img(filename):
@@ -100,12 +100,12 @@ def preprocess_all_users(path):
 
 
 maps = [
-    ("data/train1", f'data/train1-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/train2", f'data/train2-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/train3", f'data/train3-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/train4", f'data/train4-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/test", f'data/test-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/validation", f'data/validation-{OUTPUT_FRAMES}-frames.pickle')
+    ("data/90-test/train1", f'data/90-test/train1-90-test-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/90-test/train2", f'data/90-test/train2-90-test-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/90-test/train3", f'data/90-test/train3-90-test-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/90-test/train4", f'data/90-test/train4-90-test-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/90-test/test", f'data/90-test/test-90-test-{OUTPUT_FRAMES}-frames.pickle'),
+    ("data/90-test/validation", f'data/90-test/validation-90-test-{OUTPUT_FRAMES}-frames.pickle')
 ]
 
 
