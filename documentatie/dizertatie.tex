@@ -255,9 +255,28 @@
 
 	In Model-Free approaches, the input is mostly leaved intact, only small changes to normalize and sanitize it are done and let the Machine Vision algorithms decide what features to extract from the given data.
 
-	One such model is proposed by Wolf et al \cite{Wolf2016MultiviewGR}, using 3D Convolution to represent the passing of time. The network is comprised if 7 convolution and pooling payers, using $3 \times 3 \times 3$ filter size and 3, 64, 128, 128, 256, 256 and 512 chanel from layer 1 to 7. The pooling layers generally have $2 \times 2 \times 2$ dimension, with layer 1 and 3 being exceptions, with size $2 \times 2 \times 1$, to avoid collapsing to early the time dimension. After the convolution phase of the network, tow dense layers of 4096 nodes are used for classification and a final layer with softmax for labeling the output. The input for the neural network is a Tensor with the following dimensions $192 \times 128 \times 16$, where the last dimension is time and first 2 are the sizes of each frame.
+	One such model is proposed by Wolf et al \cite{Wolf2016MultiviewGR}, using 3D Convolution to represent the passing of time. The network is comprised of 7 convolution and pooling payers, using $3 \times 3 \times 3$ filter size and 3, 64, 128, 128, 256, 256 and 512 chanel from layer 1 to 7. The pooling layers generally have $2 \times 2 \times 2$ dimension, with layer 1 and 3 being exceptions, with size $2 \times 2 \times 1$, to avoid collapsing to early the time dimension. After the convolution phase of the network, tow dense layers of 4096 nodes are used for classification and a final layer with softmax for labeling the output. The input for the neural network is a Tensor with the following dimensions $192 \times 128 \times 16$, where the last dimension is time and first two are the sizes of each frame.
+
+	Because the CASIA-B database has very few training instances, for a deep neural network, Wolf et al \cite{Wolf2016MultiviewGR} have extended it by slicing the video in multiple sequences of 16 frames. The split sequences are overlapping so the network does not associate a specific pose from the first frame with a person, but the walking sequence. When splitting for a 50 frames video, the following sets of images are obtained: (1-16), (2, 17), $\hdots$ , (35, 50). For each RGB image they transformed the 3 channel into a grayscale one and the next two optical flow for the $x$ and $y$ direction, so to augment the input data with additional features, and not just using the extracted feature/features for classification.
 
 	Thapar Daksh, Aggarwal Divyansh, Agarwal Punjal and Nigam Aditya \cite{VGR-Net} propose a Hierarchically Generalized Multi-View Architecture, which takes as input a Tensor of shape $16 \times 112 \times 112$, with all the convolution layers having ReLU activation. The network is composed of tow main parts: angle prediction and classification using neural networks trained only for one specific angle. Voting is done on the outputs of all the angle specific networks. The first network uses part of the convolution layers from a pre-trained network and then passed to 2 dense layers, each of 4096 nodes and an output layer with 11 nodes, one for each angle in the data set. For the angle specific classification the same convolution layers are used, but followed by 7 dense layers, of 4096 nodes and an output layer for labeling the output. The dense layers use the ReLU activation and the output ones use softmax.
+
+	After the model is trained Thapar Daksh, Aggarwal Divyansh, Agarwal Punjal and Nigam Aditya \cite{VGR-Net} fine-tuned it by using stereoscopic images. The images are obtained by combining tow consecutive silhouette frames and highlighting the differences in red or green, while keeping the common parts of the silhouette white. The difference from the first frame is colored green, while the difference for the second frame is colored red, to obtain something similar to stereoscopic images. Fine-tuning the two stage model using these augmented images further improved the performance of the model, beating the existing state of the art, from Wolf et al \cite{Wolf2016MultiviewGR}, on almost all view angles ($0^\circ$, $18^\circ$, $36^\circ$, $54^\circ$, $108^\circ$ and $180^\circ$).
+
+	\subsection{Wearable Sensors}
+
+	Qin Zou, Yanling Wang, Qian Wang, Yi Zhao and Qingquan Li \cite{smartphone-gait} have used the data provided by the accelerometer and gyroscope from smartphones, that people wear un themselves, for identification. After the data is collected, it is partitioned in steps, for better classification, and further processed to remove the influence of the phones position while it is worn. The network used has both Convolution and Recurrent networks and the output of both is concatenated and fed to a dense network. The CNN takes as input the data from the three axis accelerometer and three axis gyroscope as one input set. The network is structured as followed:
+	\begin{itemize}
+		\item convolution with 32 filters of $1 \times 9$, obtaining a feature map of size $6 \times 64 \times 32$,
+		\item pooling with filter size $1 \times 2$,
+		\item convolution with 64 filters of $1 \times 3$, obtaining a feature map of $6 \times 32 \times 64$,
+		\item convolution with 128 filters of $1 \times 3$, obtaining a feature map of $6 \times 32 \times 128$,
+		\item pooling with filter size $1 \times 2$,
+		\item convolution with 128 filters of $6 \times 1$, obtaining a feature map of $1 \times 16 \times 128$.
+	\end{itemize}
+
+	The first convolution later and all the pooling layers used a stride of 2.
+
 	\clearpage
 
 	\section{Contributions}

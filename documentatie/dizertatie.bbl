@@ -55,6 +55,11 @@ T.~Wolf, M.~Babaee, and G.~Rigoll, ``Multi-view gait recognition using 3d
 T.~Daksh, A.~Divyansh, A.~Punjal, and N.~Aditya, ``Vgr-net: A view invariant
   gait recognition network,'' October 2017.
 
+\bibitem{smartphone-gait}
+Q.~Zou, Y.~Wang, Q.~Wang, Y.~Zhao, and Q.~Li, ``Deep learning based gait
+  recognition using smartphones in the wild,'' {\em CoRR}, vol.~abs/1811.00338,
+  pp.~316--322, 2018.
+
 \bibitem{overfitting-example-image}
 S.~N. Kasturi, {\em Underfitting and Overfitting in machine learning and how to
   deal with it !!!}
