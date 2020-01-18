@@ -569,26 +569,52 @@
 
 	Human gait recognition using machine vision aims to identify humans based on their walking style and manner in a non intrusive manner. This paper covers a couple of approaches using Deep Neural Networks to identify people by their gait, using 3D Convolutional Neural Networks or Convolutional Recurrent Neural Networks, with varying degrees of success. One model proved to obtain competitive performance.
 
-	All the models have been trained, validated and tested using all the 11 available angles, for each person, from the first half of the CASIA-B data set. Comparing all the approaches described we obtain the following Table~\ref{table:all-result} and find that the Model-Free approaches have learned useful features for classification and of those ones the 3D Convolutional Neural Network performed the best, obtaining an accuracy of 91.7\% on testing. Keep in mind that all the inputs have been normalized and sanitized for the neural networks.
+	All the models have been trained, validated and tested using all the 11 available angles, for each person, from the first half of the CASIA-B data set. Comparing all the approaches described we obtain the following results, shown in Table~\ref{table:all-results}, with the models sizes shown in Table~\ref{table:all-size}, and find that the Model-Free approaches have learned useful features for classification and of those ones the 3D Convolutional Neural Network performed the best, obtaining an accuracy of 91.7\% on testing. Keep in mind that all the inputs have been normalized and sanitized for the neural networks.
+
+	\begin{table}[h]
+		\centering
+		\renewcommand{\arraystretch}{1.5}
+
+		\caption{Comparison of the size of all the approaches}
+		\label{table:all-zise}
+
+		\begin{tabular}{ll}
+			\textbf{Model name}  &\textbf{Parameters} \\ \hline
+			Shape Index + 3D CNN & $\approx 650.000$   \\ \hline
+			3D CNN               & $\approx 650.000$   \\ \hline
+			2D Deep CNN + LSTM   & $\approx 5.100.000$ \\ \hline
+			2D CNN + LSTM        & $\approx 250.000$   \\ \hline
+			3D CNN + Dense(200)  & $\approx 650.000$   \\
+		\end{tabular}
+	\end{table}
 
 	\begin{table}[h]
 		\centering
 		\renewcommand{\arraystretch}{1.5}
 
 		\caption{Comparison of all the approaches on the test data set}
-		\label{table:all-result}
+		\label{table:all-results}
 
-		\begin{tabular}{llll}
-			\textbf{Model name} & \textbf{All view angles} & \textbf{$90^\circ$ view angle} & \textbf{Parameters} \\ \hline
-			Shape Index + 3D CNN    & 1.62\% & \textbf{\textendash} & $\approx 650.000$   \\ \hline
-			3D CNN                  & 59\%   & 89\%                 & $\approx 650.000$   \\ \hline
-			2D Deep CNN + LSTM      & 73.7\% & 80.6\%               & $\approx 5.100.000$ \\ \hline
-			2D CNN + LSTM           & 74\%   & 83.8\%               & $\approx 250.000$   \\ \hline
-			3D CNN + Dense(200)     & 91.7\% & 91.9\%               & $\approx 650.000$   \\
-		\end{tabular}
+		\begin{tabularx}{\textwidth}{X|X|X|X|X|X}
+			\textbf{View Angle} & \textbf{Shape Index + 3D CNN} & \textbf{3D CNN} & \textbf{2D Deep CNN + LSTM} & \textbf{2D CNN + LSTM} & \textbf{3D CNN + Dense(200)}\\ \hline
+			All angles  & 1.62\%               & 59\%                 & 73.7\% & 74\%   & 91.7\% \\ \hline
+			$0^\circ$   & \textbf{\textendash} & \textbf{\textendash} & 55.7\% & 57.3\% & 88.5\% \\ \hline
+			$18^\circ$  & \textbf{\textendash} & \textbf{\textendash} & 62.9\% & 67.7\% & 93.5\% \\ \hline
+			$36^\circ$  & \textbf{\textendash} & \textbf{\textendash} & 70.9\% & 64.5\% & 90.3\% \\ \hline
+			$54^\circ$  & \textbf{\textendash} & \textbf{\textendash} & 74.1\% & 77.4\% & 93.5\% \\ \hline
+			$72^\circ$  & \textbf{\textendash} & \textbf{\textendash} & 83.8\% & 80.6\% & 93.5\% \\ \hline
+			$90^\circ$  & \textbf{\textendash} & 89\%                 & 80.6\% & 83.8\% & 91.9\% \\ \hline
+			$108^\circ$ & \textbf{\textendash} & \textbf{\textendash} & 85.4\% & 82.2\% & 91.9\% \\ \hline
+			$126^\circ$ & \textbf{\textendash} & \textbf{\textendash} & 77.4\% & 77.4\% & 93.5\% \\ \hline
+			$144^\circ$ & \textbf{\textendash} & \textbf{\textendash} & 80.6\% & 66.1\% & 93.5\% \\ \hline
+			$162^\circ$ & \textbf{\textendash} & \textbf{\textendash} & 70.9\% & 70.9\% & 88.7\% \\ \hline
+			$180^\circ$ & \textbf{\textendash} & \textbf{\textendash} & 67.7\% & 64.5\% & 90.3\% \\
+		\end{tabularx}
 	\end{table}
 
 	From the results presented above we can say that using and representing time as an additional dimension in the input for Convolutional Neural Networks, calculating convolution over tree dimensions, obtain better accuracy than usual two dimensional convolution using internal memory from a Recurrent Neural Network. It may be because the differences between different frames, from the same input sequence, are to small and the LSTM nodes confuse or chose to not remember some relevant past features, whereas in convolution features are combined together of filtered out if there are not as good descriptors as others. When testing only for one view angle, $90^\circ$, the results are not much better for the 3D CNN + Dense model, but our other model had improved considerably, especially the simple 3D CNN, from 59\% to 89\%, a 30 points increase, showing us that indeed this model lacked power in classification, when dealing with multiple view angles.
+
+	When testing on individual angles we see that the accuracy does not vary wildly from angle to angle, for the 3D CNN with Dense, which shows that it generalizes well, but the LSTM models have better precision on the angles closest to $90^\circ$ and the ones closes to $0^\circ$ or $180^\circ$ do considerably worse, a decrease from 83.8\% to 57.3\%, 64.5\% respectively. From the result in Table~\ref{table:all-results} we can conclude that the Recurrent Neural Networks we designed have poor generalization power, compared to the 3D Convolution Neural Networks.
 
 	When comparing with existing approach we also see that when the classification algorithm is left alone to extract the best features to utilize outperform the ones in which the features are already extracted using image processing algorithms. In Munif Alotaibi and Ausif Mahmood \cite{gait-with-gei} they obtain 98.3\% on the normal clothes data set, using only the 90 degrees viewing angle, where the best we obtained 91.9\%, whereas Hazem El-Alfy, Ikuhisa Mitsugami and Yasushi Yagi \cite{gait-with-curvature-map} obtain 16.7\%, for the same viewing angle. Munif Alotaibi and Ausif Mahmood represented the information gained from the passing of time by combining all the silhouette frames into one, using Gait Energy Image (GEI) \cite{gei}, on the other hand Hazem El-Alfy, Ikuhisa Mitsugami and Yasushi Yagi extracted curvature information from frames composing a full gait cycle and passed it to a classification algorithm. A comparison with other approaches can be found in Table~\ref{table:camparison-results}.
 
@@ -599,22 +625,26 @@
 		\caption{Comparison of our best two approaches with other existing results}
 		\label{table:camparison-results}
 
-		\begin{tabularx}{\textwidth}{
-			>{\hsize=0.5\hsize}X
-			>{\hsize=0.25\hsize}X
-			>{\hsize=0.25\hsize}X
-		}
-			\textbf{Model name} & \textbf{All view angles} & \textbf{$90^\circ$ view angle}\\ \hline
-			VGR-net \cite{VGR-Net}             & \textbf{\textendash} & 97.08\%\\ \hline
-			MVCNN \cite{Wolf2016MultiviewGR}   & \textbf{\textendash} & 99.9\%\\ \hline
-			NDM \cite{gait-with-curvature-map} & \textbf{\textendash} & 16.7\%\\ \hline
-			GEI deep CNN \cite{gait-with-gei}  & \textbf{\textendash} & 98.3\%\\ \hline
-			2D CNN + LSTM (ours)               & 74\%                 & 83.8\%\\ \hline
-			3D CNN + Dense(200) (ours)         & 91.7\%               & 91.9\%\\
+		\begin{tabularx}{\textwidth}{X|X|X|X|X|X|X}
+			\textbf{View Angle} & \textbf{VGR-net \cite{VGR-Net}} & \textbf{MVCNN \cite{Wolf2016MultiviewGR}} & \textbf{MDM \cite{gait-with-curvature-map}} & \textbf{GEI deep CNN \cite{gait-with-gei}} & \textbf{2D CNN + LSTM} & \textbf{3D CNN + Dense(200)}\\ \hline
+			All angles  & \textbf{\textendash} & \textbf{\textendash} & \textbf{\textendash} & \textbf{\textendash} & 74\%   & 91.7\% \\ \hline
+			$0^\circ$   & 98.33\%              & 96.3\%               & 99.5\%               & \textbf{\textendash} & 57.3\% & 88.5\% \\ \hline
+			$18^\circ$  & 99.17\%              & 98.2\%               & 80.7\%               & \textbf{\textendash} & 67.7\% & 93.5\% \\ \hline
+			$36^\circ$  & 99.17\%              & 98.5\%               & 31.5\%               & \textbf{\textendash} & 64.5\% & 90.3\% \\ \hline
+			$54^\circ$  & 96.67\%              & 95.4\%               & 21.2\%               & 71.5\%               & 77.4\% & 93.5\% \\ \hline
+			$72^\circ$  & 97.92\%              & 94.3\%               & 16.1\%               & \textbf{\textendash} & 80.6\% & 93.5\% \\ \hline
+			$90^\circ$  & 97.08\%              & 99.9\%               & 16.7\%               & 69.0\%               & 83.8\% & 91.9\% \\ \hline
+			$108^\circ$ & 97.91\%              & 98.6\%               & 12.6\%               & \textbf{\textendash} & 82.2\% & 91.9\% \\ \hline
+			$126^\circ$ & 97.08\%              & 97.0\%               & 14.9\%               & 80.0\%               & 77.4\% & 93.5\% \\ \hline
+			$144^\circ$ & 96.25\%              & 97.4\%               & 24.3\%               & \textbf{\textendash} & 66.1\% & 93.5\% \\ \hline
+			$162^\circ$ & 96.67\%              & 99.2\%               & 33.0\%               & \textbf{\textendash} & 70.9\% & 88.7\% \\ \hline
+			$180^\circ$ & 97.08\%              & 96.1\%               & 55.1\%               & \textbf{\textendash} & 64.5\% & 90.3\% \\
 		\end{tabularx}
 	\end{table}
 
-	Based on the results presented above there is no need to do heavy preprocessing of the input to help the neural network obtain a better classification performance. Deep Convolutional Neural Networks are very powerful in learning using temporal data as an additional dimension of the input, even thou it does not span only for short periods of time.
+	From Table~\ref{table:camparison-results} we can see that when training on all the angles, and not for a specific one, it tends to have worse result, but in exchange we obtain the possibility to use only one model to identify persons from any angle, and do not need them to walk in a specific direction or use another model/algorithm to identify the angle and use the model used on that specific angle, or a small range of closely related angles.
+
+	Based on the results presented above there is no need to do heavy preprocessing of the input to help the neural network obtain a better classification performance, it even impedes the performance of the classification algorithm, compared to neural network with just the silhouettes or the silhouettes with additional information. Deep Convolutional Neural Networks are very powerful in learning using temporal data as an additional dimension of the input, even thou it does not span only for short periods of time.
 
 	\clearpage
 

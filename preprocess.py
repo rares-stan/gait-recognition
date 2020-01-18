@@ -78,7 +78,7 @@ def preprocess_folder(path):
 
 
 def preprocess_user(path):
-    degrees = [join(path, f) for f in listdir(path) if isdir(join(path, f))]
+    degrees = [join(path, f) for f in listdir(path) if isdir(join(path, f)) and f == degree]
     multiple_user_degrees = []
     for f in degrees:
         user_degree = preprocess_folder(f)
@@ -99,33 +99,47 @@ def preprocess_all_users(path):
     return np.array(users)
 
 
-maps = [
-    ("data/90-test/train1", f'data/90-test/train1-90-test-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/90-test/train2", f'data/90-test/train2-90-test-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/90-test/train3", f'data/90-test/train3-90-test-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/90-test/train4", f'data/90-test/train4-90-test-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/90-test/test", f'data/90-test/test-90-test-{OUTPUT_FRAMES}-frames.pickle'),
-    ("data/90-test/validation", f'data/90-test/validation-90-test-{OUTPUT_FRAMES}-frames.pickle')
+dd = [
+    '000',
+    '018',
+    '036',
+    '054',
+    '072',
+    '090',
+    '108',
+    '126',
+    '144',
+    '162',
+    '180'
 ]
 
 
-# pickle_file = open('data/train1.pickle', 'wb')
-# aa = preprocess_all_users("data/train1")
-# pickle_file = open('data/train2.pickle', 'wb')
-# aa = preprocess_all_users("data/train2")
-# pickle_file = open('data/train3.pickle', 'wb')
-# aa = preprocess_all_users("data/train3")
-# pickle_file = open('data/train4.pickle', 'wb')
-# aa = preprocess_all_users("data/train4")
-# pickle_file = open('data/validation.pickle', 'wb')
-# aa = preprocess_all_users("data/validation")
-# pickle_file = open('data/test.pickle', 'wb')
-# aa = preprocess_all_users("data/test")
-# pickle.dump(aa, pickle_file)
-# print(aa.shape)
+for degree in dd:
+    maps = [
+        ("data/train1", f'data/separate-test/train1-{degree}-test-{OUTPUT_FRAMES}-frames.pickle'),
+        ("data/train2", f'data/separate-test/train2-{degree}-test-{OUTPUT_FRAMES}-frames.pickle'),
+        ("data/train3", f'data/separate-test/train3-{degree}-test-{OUTPUT_FRAMES}-frames.pickle'),
+        ("data/train4", f'data/separate-test/train4-{degree}-test-{OUTPUT_FRAMES}-frames.pickle'),
+        ("data/test", f'data/separate-test/test-{degree}-test-{OUTPUT_FRAMES}-frames.pickle'),
+        ("data/validation", f'data/separate-test/validation-{degree}-test-{OUTPUT_FRAMES}-frames.pickle')
+    ]
 
+    # pickle_file = open('data/train1.pickle', 'wb')
+    # aa = preprocess_all_users("data/train1")
+    # pickle_file = open('data/train2.pickle', 'wb')
+    # aa = preprocess_all_users("data/train2")
+    # pickle_file = open('data/train3.pickle', 'wb')
+    # aa = preprocess_all_users("data/train3")
+    # pickle_file = open('data/train4.pickle', 'wb')
+    # aa = preprocess_all_users("data/train4")
+    # pickle_file = open('data/validation.pickle', 'wb')
+    # aa = preprocess_all_users("data/validation")
+    # pickle_file = open('data/test.pickle', 'wb')
+    # aa = preprocess_all_users("data/test")
+    # pickle.dump(aa, pickle_file)
+    # print(aa.shape)
 
-for (src, dst) in maps:
-    with open(dst, 'wb') as pickle_file:
-        aa = preprocess_all_users(src)
-        pickle.dump(aa, pickle_file)
+    for (src, dst) in maps:
+        with open(dst, 'wb') as pickle_file:
+            aa = preprocess_all_users(src)
+            pickle.dump(aa, pickle_file)

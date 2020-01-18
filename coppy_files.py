@@ -13,11 +13,11 @@ maps = [
 
 degrees = [
     # '000',
-    # '018',
+    '018',
     # '036',
     # '054',
     # '072',
-    '090',
+    # '090',
     # '108',
     # '126',
     # '144',
@@ -37,7 +37,7 @@ def copy_from_dir(src, dst):
 
 
 org = "C:\\Dizertatie\\DatasetB-1\\silhouettes\\"
-fin = "C:\\Dizertatie\\gait-recognition\\data\\90-test\\"
+fin = "C:\\Dizertatie\\gait-recognition\\data\\00-test\\"
 
 for (src, dst) in maps:
     origs = [(join(org, f, src), f) for f in listdir(org) if isdir(join(org, f))]
