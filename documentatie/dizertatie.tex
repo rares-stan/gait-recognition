@@ -644,6 +644,8 @@
 
 	From Table~\ref{table:camparison-results} we can see that when training on all the angles, and not for a specific one, it tends to have worse result, but in exchange we obtain the possibility to use only one model to identify persons from any angle, and do not need them to walk in a specific direction or use another model/algorithm to identify the angle and use the model used on that specific angle, or a small range of closely related angles.
 
+	Also that we can see that a relatively simple network, with 3D Convolution layers followed by Pooling which halves the size in all dimensions, that steadily decrease in size and a small dense layer at the end perform comparably with the best result in the field.
+
 	Based on the results presented above there is no need to do heavy preprocessing of the input to help the neural network obtain a better classification performance, it even impedes the performance of the classification algorithm, compared to neural network with just the silhouettes or the silhouettes with additional information. Deep Convolutional Neural Networks are very powerful in learning using temporal data as an additional dimension of the input, even thou it does not span only for short periods of time.
 
 	\clearpage
