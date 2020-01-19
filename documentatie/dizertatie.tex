@@ -481,6 +481,32 @@
 		\label{figure:3D-CNN-200-Dense}
 	\end{figure}
 
+	We can see what each of the convolution layer sees for an input series of frames, by extracting the value of the activation and plotting them. By doing this with out model we obtain the following image series, shown in Figures \ref{figure:visualize-conv-1}, \ref{figure:visualize-conv-2}, \ref{figure:visualize-conv-3} and \ref{figure:visualize-conv-4}, in which we have a time sequence for each convolution chanel displayed on a row, with the first 10 images from the time dimension.
+
+	\begin{figure}
+		\includegraphics[width=\textwidth]{conv-see/visualization-2.jpg}
+		\caption{Visualization of the first layer of convolution}
+		\label{figure:visualize-conv-1}
+	\end{figure}
+
+	\begin{figure}
+		\includegraphics[width=\textwidth]{conv-see/visualization-4.jpg}
+		\caption{Visualization of the second layer of convolution}
+		\label{figure:visualize-conv-2}
+	\end{figure}
+
+	\begin{figure}
+		\includegraphics[width=\textwidth]{conv-see/visualization-8.jpg}
+		\caption{Visualization of the third layer of convolution}
+		\label{figure:visualize-conv-3}
+	\end{figure}
+
+	\begin{figure}
+		\includegraphics[width=\textwidth]{conv-see/visualization-16.jpg}
+		\caption{Visualization of the fourth and last layer of convolution}
+		\label{figure:visualize-conv-4}
+	\end{figure}
+
 	Future work on this model could include a smarter way to select the needed frames to express the passing of time and gait movements, to help in reducing the networks size drastically.
 
 	\subsubsection{LSTM}
