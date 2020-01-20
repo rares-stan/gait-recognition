@@ -481,7 +481,7 @@
 		\label{figure:3D-CNN-200-Dense}
 	\end{figure}
 
-	We can see what each of the convolution layer sees for an input series of frames, by extracting the value of the activation and plotting them. By doing this with out model we obtain the following image series, shown in Figures \ref{figure:visualize-conv-1}, \ref{figure:visualize-conv-2}, \ref{figure:visualize-conv-3} and \ref{figure:visualize-conv-4}, in which we have a time sequence for each convolution chanel displayed on a row, with the first 10 images from the time dimension.
+	We can see what each of the convolution layer sees for an input series of frames, by extracting the value of the activation and plotting them. By doing this with out model we obtain the following image series, shown in Figures \ref{figure:visualize-conv-1}, \ref{figure:visualize-conv-2}, \ref{figure:visualize-conv-3} and \ref{figure:visualize-conv-4}, in which we have a time sequence for each convolution chanel displayed on a row, with ten images from the time dimension, taken uniformly, for the first layer each image is taken from a multiple of eight frames, for the second layer from multiple of four, for the third layer from multiple of two and for the last one we took all the images from the time dimension. Also for the chanel we only selected four to display, selected uniformly for each layer, first chanel for each quarter set of the channels.
 
 	\begin{figure}
 		\includegraphics[width=\textwidth]{conv-see/visualization-2.jpg}
@@ -489,11 +489,15 @@
 		\label{figure:visualize-conv-1}
 	\end{figure}
 
+	In the first layer, represented in Figure~\ref{figure:visualize-conv-1}, we can se that each image has a clear outline of a person walking and we can se the different phases of gait very clearly, over the time dimension. Also Each chanel emphasizes different features of the silhouette, in some of them the shape is very flat in other it gives it depth so that the network can differentiate between all the subjects.
+
 	\begin{figure}
 		\includegraphics[width=\textwidth]{conv-see/visualization-4.jpg}
 		\caption{Visualization of the second layer of convolution}
 		\label{figure:visualize-conv-2}
 	\end{figure}
+
+	Moving deeper in the Convolution Layers we can see that the second layer, represented in Figure~\ref{figure:visualize-conv-2}, combines features from all the dimensions, in some of the images we see shadows of how the person moves his body while walking and also combining different parts of the body, to follow their movement together.
 
 	\begin{figure}
 		\includegraphics[width=\textwidth]{conv-see/visualization-8.jpg}
@@ -501,11 +505,17 @@
 		\label{figure:visualize-conv-3}
 	\end{figure}
 
+	On the third Convolution layer, represented in Figure~\ref{figure:visualize-conv-3}, a big portion of the images do not resemble silhouettes walking, but we can distinguish the movements some patterns in the time dimension, forming clear cycles in their movement. We think that here it tries to determine the length and speed of the gait cycle.
+
 	\begin{figure}
 		\includegraphics[width=\textwidth]{conv-see/visualization-16.jpg}
 		\caption{Visualization of the fourth and last layer of convolution}
 		\label{figure:visualize-conv-4}
 	\end{figure}
+
+	Lastly, on the fourth layer, represented in Figure~\ref{figure:visualize-conv-4}, no human form can be distinguished, but following the time dimension some movement patters appear, following the whole body of the subject. From this layer all the values for an array of only one dimension and given to the dense layer for classification. The power of this classification layer is very good, it being able to correctly identify $\approx 91\%$ of the subjects, only from these four movement patterns, over ten frames each.
+
+	After training the 3D Convolutional model on all the view angles and obtained an accuracy of 91.9\% on the $90^\circ$ view angle, we have tried to specialize it on this view, by training it further on only the training samples which are taken from the $90^\circ$ angle. Doing this overfitted the model and no changes wore done on the final testing model. After this we used the same architecture and started training it from scratch only on the $90^\circ$ viewing angle. This approach also lead to overfitting, obtaining a testing accuracy of only 87\%. To increase the precision we increased the dropout rate to 0.7, but the testing concluded with a decrease in accuracy to 77.4\%. Because of the small dataset for the $90^\circ$ viewing angle and the size of the network overfitting is unavoidable, making this model unfit for specialization on only one viewing angle.
 
 	Future work on this model could include a smarter way to select the needed frames to express the passing of time and gait movements, to help in reducing the networks size drastically.
 
@@ -588,6 +598,8 @@
 
 	To prevent overfitting we have used early stopping and adding dropout to all the layers, except the input layer. If the network did not obtain a better accuracy on the validation set than the best recorded yet, in 20 epochs, we stopped the training and run the best model on the testing set. Dropout picks at random a number of nodes, in the current layer, which will be used, so that all the nodes have equal chances to have their output evaluated and not overridden by other nodes on the same layer. In our models we chose to use a dropout on half of our nodes on each layer. Learning was speedup using the Adam optimization.
 
+	After obtaining these result we tied specializing the model for the $90^\circ$ viewing angle, using the already trained model on all the angles and further training it on only one angle. This obtained an improvement in classification accuracy, reaching 79\%. It did not manage to outperform the 3D Convolution model, but it shows potential for specialization on only one viewing angle.
+
 	\clearpage
 
 	\section{Conclusions}
@@ -602,7 +614,7 @@
 		\renewcommand{\arraystretch}{1.5}
 
 		\caption{Comparison of the size of all the approaches}
-		\label{table:all-zise}
+		\label{table:all-size}
 
 		\begin{tabular}{ll}
 			\textbf{Model name}  &\textbf{Parameters} \\ \hline
