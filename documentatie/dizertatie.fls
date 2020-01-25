@@ -194,6 +194,10 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/latex/beamer/base/translator/translator-la
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/beamer/base/translator/translator-language-mappings.tex
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/float/float.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/float/float.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/filecontents/filecontents.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/filecontents/filecontents.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/url/url.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/url/url.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/colortbl/colortbl.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/colortbl/colortbl.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
@@ -330,6 +334,11 @@ INPUT c:/Dizertatie/gait-recognition/documentatie/dizertatie.toc
 OUTPUT c:/Dizertatie/gait-recognition/documentatie/dizertatie.toc
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omscmr.fd
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/base/omscmr.fd
+INPUT images/phases-of-gait-cycle.png
+INPUT ./images/phases-of-gait-cycle.png
+INPUT ./images/phases-of-gait-cycle.png
+INPUT ./images/phases-of-gait-cycle.png
+INPUT ./images/phases-of-gait-cycle.png
 INPUT images/silhouettes/001-bg-01-090-045.png
 INPUT ./images/silhouettes/001-bg-01-090-045.png
 INPUT ./images/silhouettes/001-bg-01-090-045.png

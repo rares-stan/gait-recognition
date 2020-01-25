@@ -16,6 +16,8 @@
 \usepackage{enumitem}
 \usepackage{siunitx}
 \usepackage{float}
+\usepackage{filecontents}
+\usepackage{url}
 \usepackage{color, colortbl}
 
 \geometry{
@@ -124,13 +126,22 @@
 	\section{Introduction}
 	\vspace{1cm}
 
-	Gait is the movement pattern of the limbs during walking over a solid surface. It varies based on speed, terrain, maneuvering or efficiency of energy. This movement is unique for each human and can be used for recognizing persons from afar, without the need of their cooperation or physical contact, whereas fingerprint, iris or facial do need the physical access or their cooperation \cite{biometrics-comparison}. Human gait is bipedal, biphasic forward propulsion of the center of gravity of the human body. This movement is the combination of alternate sinuous movements of body segments. The uniqueness of gait is due to:
+	Gait is the movement pattern of the limbs during walking over a solid surface. It varies based on speed, terrain, maneuvering or efficiency of energy. This movement is unique for each human and can be used for recognizing persons from afar, without the need of their cooperation or physical contact, whereas fingerprint, iris or facial do need the physical access or their cooperation \cite{biometrics-comparison}. Human gait is bipedal, biphasic forward propulsion of the center of gravity of the human body. This movement is the combination of alternate sinuous movements of body segments An example of the gait cycle is shown in Figure~\ref{figure:gait-cycle-image} with all the phases of walking exemplified. The uniqueness of gait is due to:
 	\begin{itemize}
 		\item small differences in the limb movement patterns from one person to another,
 		\item velocity,
 		\item changes in the contact with the surface,
 		\item cycles of kinetic and potential energy \cite{gait-biomecanics}.
 	\end{itemize}
+
+	\begin{figure}[h]
+		\centering
+
+		\includegraphics[width=\textwidth]{phases-of-gait-cycle.png}
+
+		\caption{Example of the gait cycle and all of its phases, taken from \cite{gait-cycle-image}}
+		\label{figure:gait-cycle-image}
+	\end{figure}
 
 	Human gait recognition is the process in which a person or an automated system looks at a sequence of frames of a person walking and identifies the unique patters of the movement and matches it, with a degree of certainty, to a person that has his/shes movements known to the one making the identification.
 
