@@ -192,6 +192,8 @@ INPUT C:/Program Files/MiKTeX 2.9/tex/latex/beamer/base/translator/translator.st
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/beamer/base/translator/translator.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/beamer/base/translator/translator-language-mappings.tex
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/beamer/base/translator/translator-language-mappings.tex
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/float/float.sty
+INPUT C:/Program Files/MiKTeX 2.9/tex/latex/float/float.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/colortbl/colortbl.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/latex/colortbl/colortbl.sty
 INPUT C:/Program Files/MiKTeX 2.9/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex

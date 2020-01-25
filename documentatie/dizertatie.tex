@@ -15,6 +15,7 @@
 \usepackage{setspace}
 \usepackage{enumitem}
 \usepackage{siunitx}
+\usepackage{float}
 \usepackage{color, colortbl}
 
 \geometry{
@@ -483,37 +484,37 @@
 
 	We can see what each of the convolution layer sees for an input series of frames, by extracting the value of the activation and plotting them. By doing this with out model we obtain the following image series, shown in Figures \ref{figure:visualize-conv-1}, \ref{figure:visualize-conv-2}, \ref{figure:visualize-conv-3} and \ref{figure:visualize-conv-4}, in which we have a time sequence for each convolution chanel displayed on a row, with ten images from the time dimension, taken uniformly, for the first layer each image is taken from a multiple of eight frames, for the second layer from multiple of four, for the third layer from multiple of two and for the last one we took all the images from the time dimension. Also for the chanel we only selected four to display, selected uniformly for each layer, first chanel for each quarter set of the channels.
 
-	\begin{figure}
+	\begin{figure}[ht]
 		\includegraphics[width=\textwidth]{conv-see/visualization-2.jpg}
 		\caption{Visualization of the first layer of convolution}
 		\label{figure:visualize-conv-1}
 	\end{figure}
 
-	In the first layer, represented in Figure~\ref{figure:visualize-conv-1}, we can se that each image has a clear outline of a person walking and we can se the different phases of gait very clearly, over the time dimension. Also Each chanel emphasizes different features of the silhouette, in some of them the shape is very flat in other it gives it depth so that the network can differentiate between all the subjects.
+	In the first layer, represented in Figure~\ref{figure:visualize-conv-1}, we can se that each image has quite a clear outline of a person walking, with some haziness, due to the different gait of all the persons that the network was trained to recognize. Besides the shape of a person we can se the different phases of gait very clearly, over the time dimension, also with some haziness, due to the differences between each person walking. Also Each chanel emphasizes different features of the silhouette, in some of them the shape is very flat in other depth is emphasized, along with different parts of the silhouette, so that the network can differentiate between all the subjects. In almost all the frames and channels we can see that shadows are cast onto the background or on some parts of the body, maybe to eliminate generic data that is not useful in the classification process.
 
-	\begin{figure}
+	\begin{figure}[ht]
 		\includegraphics[width=\textwidth]{conv-see/visualization-4.jpg}
 		\caption{Visualization of the second layer of convolution}
 		\label{figure:visualize-conv-2}
 	\end{figure}
 
-	Moving deeper in the Convolution Layers we can see that the second layer, represented in Figure~\ref{figure:visualize-conv-2}, combines features from all the dimensions, in some of the images we see shadows of how the person moves his body while walking and also combining different parts of the body, to follow their movement together.
+	Moving deeper in the Convolution Layers we can see that the second layer, represented in Figure~\ref{figure:visualize-conv-2}, combines features from all the dimensions, in some of the images we see shadows of how the person moves his body while walking and also combining different parts of the body, to follow their movement together. In almost all the images a black rectangle is placed on the head or face of the person walking, maybe because we can not extract differentiating details regarding the face or head from black and white images with small resolution. Also the haziness increases, because of the combination of time-frames when reducing the size of the input with the max pooling layers.
 
-	\begin{figure}
+	\begin{figure}[ht]
 		\includegraphics[width=\textwidth]{conv-see/visualization-8.jpg}
 		\caption{Visualization of the third layer of convolution}
 		\label{figure:visualize-conv-3}
 	\end{figure}
 
-	On the third Convolution layer, represented in Figure~\ref{figure:visualize-conv-3}, a big portion of the images do not resemble silhouettes walking, but we can distinguish the movements some patterns in the time dimension, forming clear cycles in their movement. We think that here it tries to determine the length and speed of the gait cycle.
+	On the third Convolution layer, represented in Figure~\ref{figure:visualize-conv-3}, a big portion of the images do not resemble silhouettes walking, but we can distinguish the movement of some shades of grey patterns, in the time dimension, forming clear cycles in their change of position. We think that here it tries to determine the length and speed of the gait cycle. In this layer the black rectangles continue, over s grater surface, not only on where the head or face would be, but also moving down to the abdomen. These frames are very hazy, due to the great reduction in all the dimensions, emphasizing the differencens between all of them.
 
-	\begin{figure}
+	\begin{figure}[ht]
 		\includegraphics[width=\textwidth]{conv-see/visualization-16.jpg}
 		\caption{Visualization of the fourth and last layer of convolution}
 		\label{figure:visualize-conv-4}
 	\end{figure}
 
-	Lastly, on the fourth layer, represented in Figure~\ref{figure:visualize-conv-4}, no human form can be distinguished, but following the time dimension some movement patters appear, following the whole body of the subject. From this layer all the values for an array of only one dimension and given to the dense layer for classification. The power of this classification layer is very good, it being able to correctly identify $\approx 91\%$ of the subjects, only from these four movement patterns, over ten frames each.
+	Lastly, on the fourth layer, represented in Figure~\ref{figure:visualize-conv-4}, no human form can be distinguished, but following the time dimension some movement patters appear, following the whole body of the subject. From this layer all the values for an array of only one dimension and given to the dense layer for classification. The power of this classification layer is very good, it being able to correctly identify $\approx 91\%$ of the subjects, only from these four movement patterns, over ten frames each. The haziness has increased so much that we could no longer distinguish a human figure easily. On a first glance only abstract figures are seen, but looking very carefully a very sketched human shape formed of a couple of pixels that indicate a head with shoulders, a torso bellow and maybe feet is seen in the fourth chanel (fourth row of frames). Maybe something like this is also visible in the rest of the channels, but in different angles.
 
 	After training the 3D Convolutional model on all the view angles and obtained an accuracy of 91.9\% on the $90^\circ$ view angle, we have tried to specialize it on this view, by training it further on only the training samples which are taken from the $90^\circ$ angle. It needed multiple restarts until it got a better result, with 93.5\% accuracy, most of the times it overfitted the model and the performance did not improve. After this we used the same architecture and started training it from scratch only on the $90^\circ$ viewing angle. This approach also lead to overfitting, obtaining a testing accuracy of only 87\%. To increase the precision we increased the dropout rate to 0.7, but the testing concluded with a decrease in accuracy to 77.4\%. Because of the small dataset for the $90^\circ$ viewing angle and the size of the network overfitting is unavoidable, making this model unfit for specialization on only one viewing angle.
 
@@ -681,6 +682,10 @@
 	\end{table}
 
 	From Table~\ref{table:camparison-results} we can see that when training on all the angles, and not for a specific one, it tends to have worse result, but in exchange we obtain the possibility to use only one model to identify persons from any angle, and do not need them to walk in a specific direction or use another model/algorithm to identify the angle and use the model used on that specific angle, or a small range of closely related angles.
+
+	We suspect that the difference between out models and the one proposed by VGR-net \cite{VGR-Net} is because it has two stages for classification, firstly, determining the view angle of the recording and after that eleven angle specialized models for recognition and finally voting based on the output confidence.
+
+	Regarding the difference between our models and MVCNN \cite{Wolf2016MultiviewGR}, we suspect it is due to the smaller filter size and greater depth of the network. By reducing the size of the convolution and pooling kernels you can obtain many more features from the same input size and increasing the number of layers leads to identification and tracking of much more complex features. Further tests could be performed, in which we could decrease the size of the filters, increase the layer count or combining these two changes, to determine if this is the cause of the classification accuracy difference between our models and the one proposed by Wolf et al\cite{Wolf2016MultiviewGR}.
 
 	Also that we can see that a relatively simple network, with 3D Convolution layers followed by Pooling which halves the size in all dimensions, that steadily decrease in size and a small dense layer at the end perform comparably with the best result in the field.
 

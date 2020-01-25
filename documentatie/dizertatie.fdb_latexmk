@@ -1,13 +1,13 @@
 # Fdb version 3
-["bibtex dizertatie"] 1579548160 "dizertatie.aux" "dizertatie.bbl" "dizertatie" 1579550758
+["bibtex dizertatie"] 1579965278 "dizertatie.aux" "dizertatie.bbl" "dizertatie" 1579965281
   "C:/Program Files/MiKTeX 2.9/bibtex/bst/base/ieeetr.bst" 826288124 16932 60a0804ebef57891abf0021fa74d0cd1 ""
   "bibliografie.bib" 1579371017 5838 4b0cec4314947ca7f3a0b1d5ddd03ab3 ""
-  "dizertatie.aux" 1579550758 7103 e70d327e0a4a7a5dc3a38447650a48a7 ""
+  "dizertatie.aux" 1579965280 7187 63e774dd29d67ee9475c09b8becf4948 ""
   "dizertatie.bcf" 0 -1 0 ""
   (generated)
-  "dizertatie.blg"
   "dizertatie.bbl"
-["pdflatex"] 1579550756 "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" "c:\Dizertatie\gait-recognition\documentatie/dizertatie.pdf" "dizertatie" 1579550758
+  "dizertatie.blg"
+["pdflatex"] 1579965279 "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" "c:\Dizertatie\gait-recognition\documentatie/dizertatie.pdf" "dizertatie" 1579965281
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233951848 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "C:/Program Files/MiKTeX 2.9/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1233951854 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -158,6 +158,7 @@
   "C:/Program Files/MiKTeX 2.9/tex/latex/chngcntr/chngcntr.sty" 1251866998 4063 effd8d02c8357a7a1b0c045c4e25e292 ""
   "C:/Program Files/MiKTeX 2.9/tex/latex/colortbl/colortbl.sty" 1353417692 10955 9635c8e2bffccf182429bfdea9b665a5 ""
   "C:/Program Files/MiKTeX 2.9/tex/latex/enumitem/enumitem.sty" 1317219968 42666 6fa770e3485520a6a5f2ea7d259c8f8d ""
+  "C:/Program Files/MiKTeX 2.9/tex/latex/float/float.sty" 995445346 6916 16d2656a1984957e674b149555f1ea1d ""
   "C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.cfg" 1284467836 993 8db2c8abcd1627733e569409f4331e11 ""
   "C:/Program Files/MiKTeX 2.9/tex/latex/geometry/geometry.sty" 1284467836 41632 e003406220954b0716679d7928aedd8a ""
   "C:/Program Files/MiKTeX 2.9/tex/latex/graphics/graphics.sty" 1462818186 14391 bd64a9e5d07473b936423b5f3280ed2c ""
@@ -202,12 +203,12 @@
   "C:/Program Files/MiKTeX 2.9/tex/latex/xcolor/xcolor.sty" 1463131981 57049 34128738f682d033422ca125f82e5d62 ""
   "C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map" 1494750657 1884968 edfe4f6723907840dadd3e89f425c643 ""
   "C:/Users/Alex/AppData/Local/MiKTeX/2.9/miktex/data/le/pdftex/pdflatex.fmt" 1498312822 3822394 661a37fae5242799f51243ac629df386 ""
-  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" 1579550756 58993 1223ba77e78d30a3dda935f41b2b21a0 ""
-  "c:\Dizertatie\gait-recognition\documentatie/dizertatie.aux" 1579550758 7103 e70d327e0a4a7a5dc3a38447650a48a7 ""
-  "dizertatie.aux" 1579550758 7103 e70d327e0a4a7a5dc3a38447650a48a7 ""
-  "dizertatie.bbl" 1579548161 4296 15929f4763970ae37a51b7959ba16fe7 "bibtex dizertatie"
-  "dizertatie.tex" 1579550756 58993 1223ba77e78d30a3dda935f41b2b21a0 ""
-  "dizertatie.toc" 1579550758 1127 a23b54eee7576ca215cddda7df07df33 ""
+  "c:/Dizertatie/gait-recognition/documentatie/dizertatie.tex" 1579965276 61624 769c1bf7c00bd0d99a1f1dbb62b0c300 ""
+  "c:\Dizertatie\gait-recognition\documentatie/dizertatie.aux" 1579965280 7187 63e774dd29d67ee9475c09b8becf4948 ""
+  "dizertatie.aux" 1579965280 7187 63e774dd29d67ee9475c09b8becf4948 ""
+  "dizertatie.bbl" 1579965279 4296 15929f4763970ae37a51b7959ba16fe7 "bibtex dizertatie"
+  "dizertatie.tex" 1579965276 61624 769c1bf7c00bd0d99a1f1dbb62b0c300 ""
+  "dizertatie.toc" 1579965280 1127 7f502e54e4251bcddda24731334a5c5f ""
   "images/conv-see/visualization-16.jpg" 1579541865 32287 b0fd72f948396cea2ca902c7513389c8 ""
   "images/conv-see/visualization-2.jpg" 1579541924 27990 ad5d2d82d2886a357290f8a71d30358b ""
   "images/conv-see/visualization-4.jpg" 1579541898 28449 29883a03b7c3b3e1577bccddb48cb1c2 ""
@@ -229,8 +230,8 @@
   "images/silhouettes/walk/001-nm-01-090-060.png" 1140779567 825 bbdad77e34573c8ad7bb330c8527ca13 ""
   (generated)
   "dizertatie.aux"
-  "dizertatie.log"
-  "dizertatie.pdf"
-  "dizertatie.toc"
   "c:\Dizertatie\gait-recognition\documentatie/dizertatie.pdf"
+  "dizertatie.log"
   "c:\Dizertatie\gait-recognition\documentatie/dizertatie.log"
+  "dizertatie.toc"
+  "dizertatie.pdf"
