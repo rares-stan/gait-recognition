@@ -421,7 +421,7 @@
 
 	\begin{table}[h]
 		\centering
-		\renewcommand{\arraystretch}{1.5}
+		\renewcommand{\arraystretch}{1.35}
 
 		\caption{Description of the CNN Model used with the shape index preprocessing}
 		\label{table:preprocessing-CNN}
@@ -466,6 +466,12 @@
 		\item Recurrent Neural Networks, more exactly Long Short-Term Memory (LSTM).
 	\end{itemize}
 
+	\begin{figure}[ht]
+		\includegraphics[width=\textwidth]{networks/3D-CNN-200-Dense.png}
+		\caption{3D CNN with additional Dense layer of 200 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers, generated using \cite{nn-svg}}
+		\label{figure:3D-CNN-200-Dense}
+	\end{figure}
+
 	When using 3D Convolution the third dimension represents time and so when applying filters and pooling, features from different frames, different time intervals, are combined in a unique way for each person, and the dense layers, that come after the convolution, will classify each person, based on those features.
 
 	Recurrent Neural Networks have memory, which remembers features from the past and are taken into consideration alongside with the input at the current time step.
@@ -474,32 +480,9 @@
 
 	Seeing that the Model-Based approach gave so poor results, we tried to identify the problem and reached to the conclusion that the preprocessing with shape index somewhat transformed the input in something that the network did not find features with which to uniquely identified the people. So we dropped the shape index and used only the input normalization and the neural network, which game promising results on the validation and testing input sets of $\approx 59\%$. We iterated through a couple more models and reach a satisfactory result of 91.7\%, on the validation and testing sets, after adding an additional dense layer of 200 nodes, right after the last max pooling layer, to the original network.
 
-	This improvement of $\approx 32.7\%$ is based on the power to extract more complex features and accentuate or remove features from the input received from the convolutional and pooling layers, of the new dense layer.
-
-	\begin{figure}[ht]
-		\includegraphics[width=\textwidth]{networks/3D-CNN-200-Dense.png}
-		\caption{3D CNN with additional Dense layer of 200 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers, generated using \cite{nn-svg}}
-		\label{figure:3D-CNN-200-Dense}
-	\end{figure}
-
-	In Table~\ref{table:dense-CNN} all the layers are described with each ones size, number of channels and activation functions and it is visually represented in Figure~\ref{figure:3D-CNN-200-Dense}, with the chanel numbers omitted.
-
-	Preventing overfitting is a very real problem when using the CASIA-B data set \cite{casia1}\cite{casia2}\cite{casia3} due to the very few training data available, only four examples for each filming angle for all the people. A couple of examples of measures to reduce or prevent overfitting are:
-	\begin{itemize}
-		\item add more training data,
-		\item use dropout, so that all the nodes in the network are activated,
-		\item early stopping,
-		\item use regularization, to control how much the weights update.
-	\end{itemize}
-
-	Out of the ones listed above we have used early stopping and adding dropout to all the layers, except the input layer. If the network did not obtain a better accuracy on the validation set than the best recorded yet, in 20 epochs, we stopped the training and run the best model on the testing set. Dropout picks at random a number of nodes, in the current layer, which will be used, so that all the nodes have equal chances to have their output evaluated and not overridden by other nodes on the same layer. In our models we chose to use a dropout on half of our nodes on each layer.
-
-	When learning, neural networks need a function that calculates the value with which the weights of the nodes are updated, the most popular function is stochastic gradient descent, that has a fixed learning rate, used during the entire training. In later years other functions appeared that improved the stochastic gradient descent, to reduce the learning time, called AdaGrad \cite{adagrad-optimizer}, RMSProp \cite{rmsprop-optimizer} and Adam \cite{adam-optimizer}, that combines the advantages of both AdaGrad and RMSProp.
-	We chose to also add the Adam optimization for the learning process.
-
 	\begin{table}[ht]
 		\centering
-		\renewcommand{\arraystretch}{1.5}
+		\renewcommand{\arraystretch}{1.35}
 
 		\caption{Description of the CNN Model with additional dense layer highlighted}
 		\label{table:dense-CNN}
@@ -520,7 +503,19 @@
 		\end{tabularx}
 	\end{table}
 
-	We can see what each of the convolution layer sees for an input series of frames, by extracting the value of the activation and plotting them. By doing this with out model we obtain the following image series, shown in Figures \ref{figure:visualize-conv-1}, \ref{figure:visualize-conv-2}, \ref{figure:visualize-conv-3} and \ref{figure:visualize-conv-4}, in which we have a time sequence for each convolution chanel displayed on a row, with ten images from the time dimension, taken uniformly, for the first layer each image is taken from a multiple of eight frames, for the second layer from multiple of four, for the third layer from multiple of two and for the last one we took all the images from the time dimension. Also for the chanel we only selected four to display, selected uniformly for each layer, first chanel for each quarter set of the channels.
+	This improvement of $\approx 32.7\%$ is based on the power to extract more complex features and accentuate or remove features from the input received from the convolutional and pooling layers, of the new dense layer.
+
+	In Table~\ref{table:dense-CNN} all the layers are described with each ones size, number of channels and activation functions and it is visually represented in Figure~\ref{figure:3D-CNN-200-Dense}, with the chanel numbers omitted.
+
+	Preventing overfitting is a very real problem when using the CASIA-B data set \cite{casia1}\cite{casia2}\cite{casia3} due to the very few training data available, only four examples for each filming angle for all the people. A couple of examples of measures to reduce or prevent overfitting are:
+	\begin{itemize}
+		\item add more training data,
+		\item use dropout, so that all the nodes in the network are activated,
+		\item early stopping,
+		\item use regularization, to control how much the weights update.
+	\end{itemize}
+
+	Out of the ones listed above we have used early stopping and adding dropout to all the layers, except the input layer. If the network did not obtain a better accuracy on the validation set than the best recorded yet, in 20 epochs, we stopped the training and run the best model on the testing set. Dropout picks at random a number of nodes, in the current layer, which will be used, so that all the nodes have equal chances to have their output evaluated and not overridden by other nodes on the same layer. In our models we chose to use a dropout on half of our nodes on each layer.
 
 	\begin{figure}[ht]
 		\includegraphics[width=\textwidth]{conv-see/visualization-2.jpg}
@@ -528,13 +523,18 @@
 		\label{figure:visualize-conv-1}
 	\end{figure}
 
-	In the first layer, represented in Figure~\ref{figure:visualize-conv-1}, we can se that each image has quite a clear outline of a person walking, with some haziness, due to the different gait of all the persons that the network was trained to recognize. Besides the shape of a person we can se the different phases of gait very clearly, over the time dimension, also with some haziness, due to the differences between each person walking. Also Each chanel emphasizes different features of the silhouette, in some of them the shape is very flat in other depth is emphasized, along with different parts of the silhouette, so that the network can differentiate between all the subjects. In almost all the frames and channels we can see that shadows are cast onto the background or on some parts of the body, maybe to eliminate generic data that is not useful in the classification process.
+	When learning, neural networks need a function that calculates the value with which the weights of the nodes are updated, the most popular function is stochastic gradient descent, that has a fixed learning rate, used during the entire training. In later years other functions appeared that improved the stochastic gradient descent, to reduce the learning time, called AdaGrad \cite{adagrad-optimizer}, RMSProp \cite{rmsprop-optimizer} and Adam \cite{adam-optimizer}, that combines the advantages of both AdaGrad and RMSProp.
+	We chose to also add the Adam optimization for the learning process.
+
+	We can see what each of the convolution layer sees for an input series of frames, by extracting the value of the activation and plotting them. By doing this with out model we obtain the following image series, shown in Figures \ref{figure:visualize-conv-1}, \ref{figure:visualize-conv-2}, \ref{figure:visualize-conv-3} and \ref{figure:visualize-conv-4}, in which we have a time sequence for each convolution chanel displayed on a row, with ten images from the time dimension, taken uniformly, for the first layer each image is taken from a multiple of eight frames, for the second layer from multiple of four, for the third layer from multiple of two and for the last one we took all the images from the time dimension. Also for the chanel we only selected four to display, selected uniformly for each layer, first chanel for each quarter set of the channels.
 
 	\begin{figure}[ht]
 		\includegraphics[width=\textwidth]{conv-see/visualization-4.jpg}
 		\caption{Visualization of the second layer of convolution}
 		\label{figure:visualize-conv-2}
 	\end{figure}
+
+	In the first layer, represented in Figure~\ref{figure:visualize-conv-1}, we can se that each image has quite a clear outline of a person walking, with some haziness, due to the different gait of all the persons that the network was trained to recognize. Besides the shape of a person we can se the different phases of gait very clearly, over the time dimension, also with some haziness, due to the differences between each person walking. Also Each chanel emphasizes different features of the silhouette, in some of them the shape is very flat in other depth is emphasized, along with different parts of the silhouette, so that the network can differentiate between all the subjects. In almost all the frames and channels we can see that shadows are cast onto the background or on some parts of the body, maybe to eliminate generic data that is not useful in the classification process.
 
 	Moving deeper in the Convolution Layers we can see that the second layer, represented in Figure~\ref{figure:visualize-conv-2}, combines features from all the dimensions, in some of the images we see shadows of how the person moves his body while walking and also combining different parts of the body, to follow their movement together. In almost all the images a black rectangle is placed on the head or face of the person walking, maybe because we can not extract differentiating details regarding the face or head from black and white images with small resolution. Also the haziness increases, because of the combination of time-frames when reducing the size of the input with the max pooling layers.
 
@@ -554,28 +554,15 @@
 
 	Lastly, on the fourth layer, represented in Figure~\ref{figure:visualize-conv-4}, no human form can be distinguished, but following the time dimension some movement patters appear, following the whole body of the subject. From this layer all the values for an array of only one dimension and given to the dense layer for classification. The power of this classification layer is very good, it being able to correctly identify $\approx 91\%$ of the subjects, only from these four movement patterns, over ten frames each. The haziness has increased so much that we could no longer distinguish a human figure easily. On a first glance only abstract figures are seen, but looking very carefully a very sketched human shape formed of a couple of pixels that indicate a head with shoulders, a torso bellow and maybe feet is seen in the fourth chanel (fourth row of frames). Maybe something like this is also visible in the rest of the channels, but in different angles.
 
-	After training the 3D Convolutional model on all the view angles and obtained an accuracy of 91.9\% on the $90^\circ$ view angle, we have tried to specialize it on this view, by training it further on only the training samples which are taken from the $90^\circ$ angle. It needed multiple restarts until it got a better result, with 93.5\% accuracy, most of the times it overfitted the model and the performance did not improve. After this we used the same architecture and started training it from scratch only on the $90^\circ$ viewing angle. This approach also lead to overfitting, obtaining a testing accuracy of only 87\%. To increase the precision we increased the dropout rate to 0.7, but the testing concluded with a decrease in accuracy to 77.4\%. Because of the small dataset for the $90^\circ$ viewing angle and the size of the network overfitting is unavoidable, making this model unfit for specialization on only one viewing angle.
-
-	Future work on this model could include a smarter way to select the needed frames to express the passing of time and gait movements, to help in reducing the networks size drastically.
-
-	\subsubsection{LSTM}
-
-	After seeing the success of the model using 3D Convolution we tried using RNN, with LSTM nodes to treat the temporality of gait. RNNs wore chosen because their success in natural language processing and generation, being able to recall events happened in the text quite early one, hoping to recall specific features that appeared in previous frames of the input.
-
 	\begin{figure}[ht]
 		\includegraphics[width=\textwidth]{networks/big-2D-CNN-LSTM-Dense.png}
 		\caption{Big 2D CNN with LSTM layer of size 128 and Dense layer of 256 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers, generated using \cite{nn-svg}}
 		\label{figure:big-2D-CNN-LSTM-Dense}
 	\end{figure}
 
-	For doing so initially a Convolution Neural Network was created, to process and extract features for one frame, using 2D Convolution and 2D Max Pooling layers. The CNN was then used as time distributed input for a LSTM layer of 128 nodes, followed by a dense layer of 256 nodes and a dense output layer of 62 nodes.
-	The LSTM layer was used for combining and selecting features across time and the first dense layer for extracting more complex features and accentuate or remove features from the input. Lastly the output dense layer labels the output, based on the features received as input.
-
-	One of the CNN models created for the RNN consists of 4 sets of 2 2D Convolution layers followed by a 2D Max Pooling layer. The whole RNN network, with layer sizes, is described in Table~\ref{table:big-CNN-LSTM} and visually represented in Figure~\ref{figure:big-2D-CNN-LSTM-Dense}, with the chanel numbers included, because the convolutional layers are 2D, which are the most widespread and easy to represent visually.
-
 	\begin{table}[ht]
 		\centering
-		\renewcommand{\arraystretch}{1.5}
+		\renewcommand{\arraystretch}{1.35}
 
 		\caption{Description of the CNN+RNN Model with many Convolution layers}
 		\label{table:big-CNN-LSTM}
@@ -600,13 +587,11 @@
 		\end{tabularx}
 	\end{table}
 
-	This network obtained better results than the initial CNN, with just an output dense layer, obtaining 73.7\% accuracy on the test and validation sets, but adding another dense layer to the CNN obtains better results, with 18\% higher accuracy. LSTM shows potential in classifying human gait.
-
-	Taking from the previous result, maybe the CNN is to big and does not select all the relevant information for identifying people, so we changed the CNN with one that proved to have good results, from the 3D Convolution and adapted it to work with 2D input, removing the time dimension. The resulting CNN+RNN is described in Table~\ref{table:small-CNN-LSTM} and visually represented in Figure~\ref{figure:small-2D-CNN-LSTM-Dense}, with the chanel numbers included, because the convolutional layers are 2D, which are the most widespread and easy to represent visually.
+	After training the 3D Convolutional model on all the view angles and obtained an accuracy of 91.9\% on the $90^\circ$ view angle, we have tried to specialize it on this view, by training it further on only the training samples which are taken from the $90^\circ$ angle. It needed multiple restarts until it got a better result, with 93.5\% accuracy, most of the times it overfitted the model and the performance did not improve. After this we used the same architecture and started training it from scratch only on the $90^\circ$ viewing angle. This approach also lead to overfitting, obtaining a testing accuracy of only 87\%. To increase the precision we increased the dropout rate to 0.7, but the testing concluded with a decrease in accuracy to 77.4\%. Because of the small dataset for the $90^\circ$ viewing angle and the size of the network overfitting is unavoidable, making this model unfit for specialization on only one viewing angle.
 
 	\begin{table}[ht]
 		\centering
-		\renewcommand{\arraystretch}{1.5}
+		\renewcommand{\arraystretch}{1.35}
 
 		\caption{Description of the CNN+RNN Model with fewer Convolution layers}
 		\label{table:small-CNN-LSTM}
@@ -627,15 +612,31 @@
 		\end{tabularx}
 	\end{table}
 
-	Using a smaller CNN did not improve the accuracy by much, to 74\%, on validation and testing, so the Convolution network does not matter how big it is. Further tests in which we increase the size of the LSTM layer will be done, to se how it affects the classification performance.
+	Future work on this model could include a smarter way to select the needed frames to express the passing of time and gait movements, to help in reducing the networks size drastically.
 
-	To prevent overfitting we have used early stopping and adding dropout to all the layers, except the input layer. If the network did not obtain a better accuracy on the validation set than the best recorded yet, in 20 epochs, we stopped the training and run the best model on the testing set. Dropout picks at random a number of nodes, in the current layer, which will be used, so that all the nodes have equal chances to have their output evaluated and not overridden by other nodes on the same layer. In our models we chose to use a dropout on half of our nodes on each layer. Learning was speedup using the Adam optimization.
+	\subsubsection{LSTM}
+
+
+	After seeing the success of the model using 3D Convolution we tried using RNN, with LSTM nodes to treat the temporality of gait. RNNs wore chosen because their success in natural language processing and generation, being able to recall events happened in the text quite early one, hoping to recall specific features that appeared in previous frames of the input.
 
 	\begin{figure}[ht]
 		\includegraphics[width=\textwidth]{networks/small-2D-CNN-LSTM-Dense.png}
 		\caption{Small 2D CNN with LSTM layer of size 128 and Dense layer of 256 neurons visualized with the chanel numbers omitted, to better visualize the volumetric layers, generated using \cite{nn-svg}}
 		\label{figure:small-2D-CNN-LSTM-Dense}
 	\end{figure}
+
+	For doing so initially a Convolution Neural Network was created, to process and extract features for one frame, using 2D Convolution and 2D Max Pooling layers. The CNN was then used as time distributed input for a LSTM layer of 128 nodes, followed by a dense layer of 256 nodes and a dense output layer of 62 nodes.
+	The LSTM layer was used for combining and selecting features across time and the first dense layer for extracting more complex features and accentuate or remove features from the input. Lastly the output dense layer labels the output, based on the features received as input.
+
+	One of the CNN models created for the RNN consists of 4 sets of 2 2D Convolution layers followed by a 2D Max Pooling layer. The whole RNN network, with layer sizes, is described in Table~\ref{table:big-CNN-LSTM} and visually represented in Figure~\ref{figure:big-2D-CNN-LSTM-Dense}, with the chanel numbers included, because the convolutional layers are 2D, which are the most widespread and easy to represent visually.
+
+	This network obtained better results than the initial CNN, with just an output dense layer, obtaining 73.7\% accuracy on the test and validation sets, but adding another dense layer to the CNN obtains better results, with 18\% higher accuracy. LSTM shows potential in classifying human gait.
+
+	Taking from the previous result, maybe the CNN is to big and does not select all the relevant information for identifying people, so we changed the CNN with one that proved to have good results, from the 3D Convolution and adapted it to work with 2D input, removing the time dimension. The resulting CNN+RNN is described in Table~\ref{table:small-CNN-LSTM} and visually represented in Figure~\ref{figure:small-2D-CNN-LSTM-Dense}, with the chanel numbers included, because the convolutional layers are 2D, which are the most widespread and easy to represent visually.
+
+	Using a smaller CNN did not improve the accuracy by much, to 74\%, on validation and testing, so the Convolution network does not matter how big it is. Further tests in which we increase the size of the LSTM layer will be done, to se how it affects the classification performance.
+
+	To prevent overfitting we have used early stopping and adding dropout to all the layers, except the input layer. If the network did not obtain a better accuracy on the validation set than the best recorded yet, in 20 epochs, we stopped the training and run the best model on the testing set. Dropout picks at random a number of nodes, in the current layer, which will be used, so that all the nodes have equal chances to have their output evaluated and not overridden by other nodes on the same layer. In our models we chose to use a dropout on half of our nodes on each layer. Learning was speedup using the Adam optimization.
 
 	After obtaining these result we tied specializing the model for the $90^\circ$ viewing angle, using the already trained model on all the angles and further training it on only one angle. This obtained an improvement in classification accuracy, reaching 79\%. It did not manage to outperform the 3D Convolution model, but it shows potential for specialization on only one viewing angle.
 
@@ -650,7 +651,7 @@
 
 	\begin{table}[h]
 		\centering
-		\renewcommand{\arraystretch}{1.5}
+		\renewcommand{\arraystretch}{1.35}
 
 		\caption{Comparison of the size of all the approaches}
 		\label{table:all-size}
@@ -667,7 +668,7 @@
 
 	\begin{table}[h]
 		\centering
-		\renewcommand{\arraystretch}{1.5}
+		\renewcommand{\arraystretch}{1.35}
 
 		\caption{Comparison of all the approaches on the test data set}
 		\label{table:all-results}
@@ -697,7 +698,7 @@
 
 	\begin{table}[h]
 		\centering
-		\renewcommand{\arraystretch}{1.5}
+		\renewcommand{\arraystretch}{1.35}
 
 		\caption{Comparison of our best two approaches with other existing results}
 		\label{table:camparison-results}
